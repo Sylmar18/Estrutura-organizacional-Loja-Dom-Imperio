@@ -1,76 +1,168 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-     <link
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Dashboard | Dom Império</title>
+
+  <link
     rel="stylesheet"
     href="assets/css/style.css"
   >
- <link
+
+  <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
   >
+  <link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
 
 </head>
 
 <body>
 
+  <!-- LOGO DE FUNDO -->
+
+  <div class="logo-central">
+
+    <img
+      src="assets/img/logo.jpeg"
+      alt="Logo Central"
+    >
+
+  </div>
+
+  <!-- LAYOUT -->
+
   <div class="layout">
 
     <!-- SIDEBAR -->
+
     <aside class="sidebar">
+
+      <!-- LOGO -->
 
       <div class="logo">
 
-     <img
-    src="assets/img/logo.jpeg"
-    alt="Logo Dom Império"
-  >
+        <img
+          src="assets/img/logo.jpeg"
+          alt="Logo Dom Império"
+        >
 
-        <h2>Dom Império Dry Fit UA UA UUUA</h2>
+        <div class="logo-texto">
+
+          <h2>Dom Império</h2>
+
+          <span>DRY FIT</span>
+
+        </div>
 
       </div>
 
+      <!-- MENU -->
+
       <nav class="menu">
 
-        <a href="index.html" class="active">
+        <a
+          href="dashboard.html"
+          class="active"
+        >
+
           <i class="fa-solid fa-chart-line"></i>
-          Dashboard
+
+          <span>Dashboard</span>
+
         </a>
 
         <a href="produtos.html">
+
           <i class="fa-solid fa-box"></i>
-          Produtos
+
+          <span>Produtos</span>
+
         </a>
 
         <a href="clientes.html">
+
           <i class="fa-solid fa-users"></i>
-          Clientes
+
+          <span>Clientes</span>
+
         </a>
 
       </nav>
 
+      <!-- FOOTER SIDEBAR -->
+
+      <div class="sidebar-footer">
+
+        <i class="fa-solid fa-crown"></i>
+
+        <div>
+
+          <h4>Dom Império</h4>
+
+          <p>Excelência em cada detalhe.</p>
+
+        </div>
+
+      </div>
+
     </aside>
 
     <!-- CONTEÚDO -->
+
     <main class="content">
+
+      <!-- TOPO -->
 
       <header class="topbar">
 
-        <h1>Dashboard</h1>
+        <div>
+
+          <h1>Dashboard</h1>
+
+          <p>
+            Visão geral do seu negócio
+          </p>
+
+        </div>
+
+        <!-- DATA -->
+
+        <div class="data-box">
+
+          <i class="fa-regular fa-calendar"></i>
+
+          <span id="dataAtual"></span>
+
+        </div>
 
       </header>
 
       <!-- CARDS -->
+
       <section class="cards">
+
+        <!-- CARD PRODUTOS -->
 
         <div class="card-info">
 
-          <i class="fa-solid fa-box"></i>
+          <div class="icon-box">
 
-          <div>
+            <i class="fa-solid fa-box"></i>
+
+          </div>
+
+          <div class="card-texto">
 
             <h3 id="totalProdutos">0</h3>
 
@@ -80,11 +172,17 @@
 
         </div>
 
+        <!-- CARD CLIENTES -->
+
         <div class="card-info">
 
-          <i class="fa-solid fa-users"></i>
+          <div class="icon-box">
 
-          <div>
+            <i class="fa-solid fa-users"></i>
+
+          </div>
+
+          <div class="card-texto">
 
             <h3 id="totalClientes">0</h3>
 
@@ -94,11 +192,17 @@
 
         </div>
 
+        <!-- CARD VALOR -->
+
         <div class="card-info">
 
-          <i class="fa-solid fa-money-bill"></i>
+          <div class="icon-box">
 
-          <div>
+            <i class="fa-solid fa-money-bill"></i>
+
+          </div>
+
+          <div class="card-texto">
 
             <h3 id="valorReceber">
               R$ 0
@@ -109,16 +213,60 @@
           </div>
 
         </div>
+        
+         <div class="card-info">
+
+          <div class="icon-box">
+
+            <i class="fa-solid fa-box"></i>
+
+          </div>
+
+          <div class="card-texto">
+
+            <h3 id="totalpedidos">0</h3>
+
+            <p>pedidos</p>
+
+          </div>
+
+        </div>
 
       </section>
+
+      <!-- FOOTER CENTRAL -->
+
+    <footer class="footer-dashboard">
+
+  <span>
+    <i class="fa-solid fa-crown"></i>
+    A força e Sutileza de um Guerreiro
+  </span>
+
+
+</footer>
 
     </main>
 
   </div>
 
+  <!-- SCRIPTS -->
+
   <script src="assets/js/db.js"></script>
 
   <script src="assets/js/dashboard.js"></script>
 
+  <!-- DATA AUTOMÁTICA -->
+
+  <script>
+
+    const data = new Date();
+
+    document.getElementById("dataAtual").innerHTML =
+      data.toLocaleDateString("pt-BR");
+
+  </script>
+
 </body>
+
 </html>
