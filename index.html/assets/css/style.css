@@ -17,7 +17,9 @@ body{
   #000000 100%
   );
 
-  overflow:hidden;
+  overflow-x:auto;
+
+  overflow-y:auto;
 
   position:relative;
 
@@ -656,4 +658,226 @@ th,td{
 
 .vermelho{
   background:#f8d7da;
+}
+/*--------Produtos--------------/
+/* FILTROS */
+
+.filtros{
+
+  display:flex;
+
+  gap:15px;
+
+  margin-bottom:25px;
+}
+
+.filtros input,
+.filtros select{
+
+  padding:15px;
+
+  border-radius:14px;
+
+  border:
+  1px solid rgba(255,255,255,0.1);
+
+  background:
+  rgba(255,255,255,0.05);
+
+  color:white;
+
+  backdrop-filter:blur(10px);
+}
+
+/* FORM */
+
+.formulario{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(220px,1fr));
+
+  gap:15px;
+
+  margin-bottom:30px;
+}
+
+.formulario input,
+.formulario select{
+
+  padding:16px;
+
+  border:none;
+
+  border-radius:16px;
+
+  background:
+  rgba(255,255,255,0.06);
+
+  color:white;
+
+  border:
+  1px solid rgba(255,255,255,0.08);
+}
+
+.formulario button{
+
+  padding:16px;
+
+  border:none;
+
+  border-radius:16px;
+
+  background:#2563eb;
+
+  color:white;
+
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+.formulario button:hover{
+
+  transform:translateY(-3px);
+}
+
+/* GRÁFICO */
+
+.grafico-box{
+
+  background:
+  rgba(255,255,255,0.05);
+
+  padding:25px;
+
+  border-radius:24px;
+
+  margin-bottom:30px;
+
+  backdrop-filter:blur(10px);
+}
+
+/* TABELA */
+
+.tabela-container{
+
+  background:
+  rgba(255,255,255,0.05);
+
+  border-radius:24px;
+
+  padding:25px;
+
+  overflow:auto;
+
+  backdrop-filter:blur(10px);
+}
+
+table{
+
+  width:100%;
+
+  border-collapse:collapse;
+}
+
+th{
+
+  background:
+  rgba(255,255,255,0.08);
+
+  color:white;
+}
+
+th,td{
+
+  padding:16px;
+
+  text-align:center;
+
+  border-bottom:
+  1px solid rgba(255,255,255,0.06);
+}
+
+/* BADGES */
+
+.badge{
+
+  padding:6px 14px;
+
+  border-radius:20px;
+
+  font-size:12px;
+
+  font-weight:600;
+}
+
+.conjunto{
+
+  background:#312e81;
+
+  color:#c7d2fe;
+}
+
+.simples{
+
+  background:#14532d;
+
+  color:#bbf7d0;
+}
+
+/* ESTOQUE */
+
+.estoque-baixo{
+
+  background:#3b0d0d;
+
+  color:#ff4d4d;
+}
+
+/* BOTÕES */
+
+.btn{
+
+  padding:8px 14px;
+
+  border:none;
+
+  border-radius:10px;
+
+  cursor:pointer;
+
+  color:white;
+}
+
+.editar{
+
+  background:#2563eb;
+}
+
+.excluir{
+
+  background:#dc2626;
+}
+
+/* HISTÓRICO */
+
+.historico{
+
+  margin-top:35px;
+
+  background:
+  rgba(255,255,255,0.05);
+
+  padding:25px;
+
+  border-radius:24px;
+
+  backdrop-filter:blur(10px);
+}
+
+.historico h2{
+
+  margin-bottom:20px;
 }

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>produtos</title>
+     <link
+    rel="stylesheet"
+    href="assets/css/style.css"
+  >
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  >
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+  <div class="logo-central">
+
+    <img
+      src="assets/img/logo.jpeg"
+      alt=""
+    >
+     </div>
+
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+      <div class="logo">
+
+        <img
+          src="assets/img/logo.jpeg"
+          alt=""
+        >
+
+        <div>
+
+          <h2>Dom Império</h2>
+
+          <span>DRY FIT</span>
+
+        </div>
+
+      </div>
+
+      <!-- MENU -->
+
+      <nav class="menu">
+
+        <a href="dashboard.html">
+
+          <i class="fa-solid fa-chart-line"></i>
+
+          Dashboard
+
+        </a>
+
+        <a
+          href="produtos.html"
+          class="active"
+        >
+         <i class="fa-solid fa-box"></i>
+
+          Produtos
+
+        </a>
+
+        <a href="clientes.html">
+          <i class="fa-solid fa-users"></i>
+
+          Clientes
+
+        </a>
+      </nav>
+    </aside>
+
+    <main class="content">
+
+      <!-- TOPO -->
+
+      <header class="topbar">
+
+        <div>
+
+          <h1>Produtos</h1>
+
+          <p>
+            controle completo do estoque 
+          </p>
+              </div>
+
+      </header>
+
+      <section class="filtros">
+        <input type="text" id="busca" placeholder="buscar produto">
+        
+         <select id="filtroCor">
+            <option value="">
+                Todas as cores 
+            </option>
+              <option>Preto</option>
+          <option>Branco</option>
+          <option>Azul</option>
+          <option>Vermelho</option>
+          <option>Verde</option>
+          <option>Amarelo</option>
+
+         </select>
+            
+         <select id="filtroTamanho">
+
+          <option value="">
+            Todos tamanhos
+          </option>
+
+          <option>P</option>
+          <option>M</option>
+          <option>G</option>
+          <option>GG</option>
+          <option>G2</option>
+
+      </section>
+        <!-- FORMULÁRIO -->
+
+      <section class="formulario">
+
+        <input
+          type="text"
+          id="nome"
+          placeholder="Nome do produto"
+        >
+
+        <input
+          type="text"
+          id="cor"
+          placeholder="Cor"
+        >
+
+        <input
+          type="text"
+          id="tamanho"
+          placeholder="Tamanho"
+        >
+
+        <input
+          type="number"
+          id="preco"
+          placeholder="Preço"
+        >
+
+        <select id="tipo">
+
+          <option value="Simples">
+            Simples
+          </option>
+
+          <option value="Conjunto">
+            Conjunto
+          </option>
+
+        </select>
+
+        <input
+          type="number"
+          id="estoque"
+          placeholder="Quantidade em estoque"
+        >
+
+        <input
+          type="number"
+          id="vendidos"
+          placeholder="Quantidade vendida"
+        >
+
+        <button onclick="cadastrarProduto()">
+
+          Cadastrar Produto
+
+        </button>
+
+      </section>
+
+      <!-- GRÁFICO -->
+
+      <section class="grafico-box">
+
+        <canvas id="graficoVendas"></canvas>
+
+      </section>
+
+      <!-- TABELA -->
+
+      <section class="tabela-container">
+
+        <table>
+
+          <thead>
+
+            <tr>
+
+              <th>Produto</th>
+              <th>Cor</th>
+              <th>Tamanho</th>
+              <th>Preço</th>
+              <th>Tipo</th>
+              <th>Estoque</th>
+              <th>Vendidos</th>
+              <th>Restante</th>
+              <th>Ações</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody id="tabelaProdutos"></tbody>
+
+        </table>
+
+      </section>
+
+      <!-- HISTÓRICO -->
+
+      <section class="historico">
+
+        <h2>Histórico de Movimentações</h2>
+
+        <table>
+
+          <thead>
+
+            <tr>
+
+              <th>Produto</th>
+              <th>Movimento</th>
+              <th>Quantidade</th>
+              <th>Data</th>
+
+            </tr>
+            
+          </thead>
+          <tbody id="historicoTabela"></tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <script src="assets/js/produtos.js"></script>
+
+</body>
+
+</html>
+
+<body>
+    
+</body>
+</html>
