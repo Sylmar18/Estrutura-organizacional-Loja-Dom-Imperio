@@ -51,11 +51,11 @@
 
       <nav class="menu">
 
-        <a href="dashboard.html">
+        <a href="menu.html">
 
           <i class="fa-solid fa-chart-line"></i>
 
-          Dashboard
+          Menu
 
         </a>
 
@@ -92,11 +92,15 @@
             controle completo do estoque 
           </p>
               </div>
+              
 
       </header>
+      
 
       <section class="filtros">
-        <input type="text" id="busca" placeholder="buscar produto">
+        <input type="text" 
+        id="busca" 
+        placeholder="buscar produto">
         
          <select id="filtroCor">
             <option value="">
@@ -108,6 +112,10 @@
           <option>Vermelho</option>
           <option>Verde</option>
           <option>Amarelo</option>
+          <option>Preto/Branco</option>
+          <option>Branco/Preto</option>
+          <option></option>
+
 
          </select>
             
@@ -122,8 +130,9 @@
           <option>G</option>
           <option>GG</option>
           <option>G2</option>
+          <option>G3</option>
 
-      </section>
+      </select>
         <!-- FORMULÁRIO -->
 
       <section class="formulario">
@@ -145,21 +154,52 @@
           id="tamanho"
           placeholder="Tamanho"
         >
+   
+<div class="campo-preco">
 
-        <input
-          type="number"
-          id="preco"
-          placeholder="Preço"
-        >
+  <span>R$</span>
+
+  <input
+    type="number"
+    id="preco"
+    placeholder="0,00"
+  >
+
+</div>
+        
 
         <select id="tipo">
 
-          <option value="Simples">
-            Simples
+          <option value="Camisa simples">
+           Camisa simples
           </option>
+         
+          <option value="Camisa 2Cores">
+            Camisa 2Cores
+          </option>
+         
+          <option value="Regata simples">
+           Regata
+         </option>
+
+           <option value="regata 2Cores">
+         Regata 2Cores
+         </option>
+
+         <option value="Short simples">
+           Short simples 
+           </option>
+
+           <option value="Short duplo">
+           Short duplo
+            </option>
 
           <option value="Conjunto">
             Conjunto
+          </option>
+          
+            <option value="Conjunto 2Cores">
+            Conjunto 2Cores
           </option>
 
         </select>
