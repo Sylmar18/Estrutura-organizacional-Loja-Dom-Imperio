@@ -666,6 +666,7 @@ th,td{
 
     display:flex;
     flex-direction:column;
+    width: 350px;
     gap:15px;
     margin-bottom:20px;
     align-items:center;
@@ -698,12 +699,19 @@ th,td{
 .formulario{
 
     display:grid;
-      width:850px;
-    grid-template-columns:
+    
+    width:850px;
+    
+      grid-template-columns:
+    
     repeat(auto-fit,minmax(220px,1fr));
-
+    
+    background: rgba(255,255,255,0.15);
+    
+    backdrop-filter: blur(15px);
+    
     gap:15px;
-
+    
     padding:25px;
 
     margin-bottom:30px;
@@ -753,7 +761,11 @@ select option{
 
   transform:translateY(-3px);
 }
-
+.painel-produtos{
+    display:flex;
+    gap:40px;
+    align-items:flex-start;
+}
 /* GRÁFICO */
 
 .grafico-box{

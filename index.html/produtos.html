@@ -75,6 +75,13 @@
           Clientes
 
         </a>
+
+          <a href="pedidos.html">
+          <i class="fa-solid fa-users"></i>
+
+          Pedidos
+
+        </a>
       </nav>
     </aside>
 
@@ -96,6 +103,8 @@
 
       </header>
       
+<div class="painel-produtos">
+
 
       <section class="filtros">
         <input type="text" 
@@ -133,6 +142,16 @@
           <option>G3</option>
 
       </select>
+      <select id="filtroGenero">
+    <option value="">Todos os gêneros</option>
+    <option value="Masculino">👨 Masculino</option>
+    <option value="Feminino">👩 Feminino</option>
+    <option value="Unissex">🧑 Unissex</option>
+    
+
+      </select>
+      </div>
+      
         <!-- FORMULÁRIO -->
 
       <section class="formulario">
@@ -204,6 +223,23 @@
 
         </select>
 
+     <select id="genero">
+
+    <option value="Masculino">
+        👨 Masculino
+    </option>
+
+    <option value="Feminino">
+        👩 Feminino
+    </option>
+
+    <option value="Unissex">
+        🧑 Unissex
+    </option>
+
+</select>
+
+   
         <input
           type="number"
           id="estoque"
@@ -247,6 +283,7 @@
               <th>Tamanho</th>
               <th>Preço</th>
               <th>Tipo</th>
+              <th>Gênero</th>
               <th>Estoque</th>
               <th>Vendidos</th>
               <th>Restante</th>
@@ -294,7 +331,3 @@
 
 </html>
 
-<body>
-    
-</body>
-</html>

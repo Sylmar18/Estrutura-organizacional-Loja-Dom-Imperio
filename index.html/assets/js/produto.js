@@ -37,6 +37,9 @@ function cadastrarProduto(){
 
   let tipo =
   document.getElementById("tipo").value;
+  
+  let genero =
+   document.getElementById("genero").value
 
   let estoque =
   Number(
@@ -60,6 +63,7 @@ function cadastrarProduto(){
     tamanho,
     preco,
     tipo,
+    genero,
     estoque,
     vendidos,
     restante
@@ -128,6 +132,8 @@ function atualizarTabela(){
           </span>
 
         </td>
+
+        <td>${produto.genero}</td>
 
         <td>${produto.estoque}</td>
 
@@ -301,6 +307,95 @@ function atualizarGrafico(){
         borderWidth:1
 
       }]
+    }
+  });
+}
+function aplicarFiltros() {
+
+  let cor =
+  document.getElementById("filtroCor").value;
+
+  let tamanho =
+  document.getElementById("filtroTamanho").value;
+
+  let genero =
+  document.getElementById("filtroGenero").value;
+
+  let busca =
+  document.getElementById("busca")
+  .value
+  .toLowerCase();
+
+  let tabela =
+  document.getElementById("tabelaProdutos");
+
+  tabela.innerHTML = "";
+
+  produtos.forEach(produto => {
+
+    let correspondeBusca =
+      produto.nome.toLowerCase().includes(busca);
+
+    let correspondeCor =
+      cor === "" || produto.cor === cor;
+
+    let correspondeTamanho =
+      tamanho === "" || produto.tamanho === tamanho;
+
+    let correspondeGenero =
+      genero === "" || produto.genero === genero;
+
+    if (
+      correspondeBusca &&
+      correspondeCor &&
+      correspondeTamanho &&
+      correspondeGenero
+    ) {
+
+      tabela.innerHTML += `
+        <tr class="${
+          produto.restante <= 5
+          ? "estoque-baixo"
+          : ""
+        }">
+
+          <td>${produto.nome}</td>
+          <td>${produto.cor}</td>
+          <td>${produto.tamanho}</td>
+          <td>R$ ${produto.preco}</td>
+
+          <td>
+            <span class="badge ${
+              produto.tipo === "Conjunto"
+              ? "conjunto"
+              : "simples"
+            }">
+              ${produto.tipo}
+            </span>
+          </td>
+
+          <td>${produto.genero}</td>
+
+          <td>${produto.estoque}</td>
+          <td>${produto.vendidos}</td>
+          <td>${produto.restante}</td>
+
+          <td>
+            <button
+              class="btn editar"
+              onclick="editarProduto(${produtos.indexOf(produto)})">
+              Editar
+            </button>
+
+            <button
+              class="btn excluir"
+              onclick="excluirProduto(${produtos.indexOf(produto)})">
+              Excluir
+            </button>
+          </td>
+
+        </tr>
+      `;
     }
   });
 }
