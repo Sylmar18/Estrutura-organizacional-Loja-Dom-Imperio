@@ -40,6 +40,9 @@ function cadastrarProduto(){
   
   let genero =
    document.getElementById("genero").value
+   
+   let detalheManga =
+   document.getElementById("detalheManga").value
 
   let estoque =
   Number(
@@ -50,6 +53,33 @@ function cadastrarProduto(){
   Number(
     document.getElementById("vendidos").value
   );
+  if(
+  nome.trim() === "" ||
+  cor.trim() === "" ||
+  tamanho.trim() === ""
+){
+  alert("Preencha todos os campos.");
+  return;
+}
+
+if(vendidos > estoque){
+  alert("Vendidos não pode ser maior que o estoque.");
+  return;
+}
+if(preco < 0){
+  alert("Preço inválido.");
+  return;
+}
+
+if(estoque < 0){
+  alert("Estoque inválido.");
+  return;
+}
+
+if(vendidos < 0){
+  alert("Quantidade vendida inválida.");
+  return;
+}
 
   let restante =
   estoque - vendidos;
@@ -64,12 +94,24 @@ function cadastrarProduto(){
     preco,
     tipo,
     genero,
+    detalheManga,
     estoque,
     vendidos,
     restante
   };
 
-  produtos.push(produto);
+produtos.push(produto);
+
+document.getElementById("nome").value = "";
+document.getElementById("cor").value = "";
+document.getElementById("tamanho").value = "";
+document.getElementById("preco").value = "";
+document.getElementById("estoque").value = "";
+document.getElementById("vendidos").value = "";
+
+document.getElementById("tipo").selectedIndex = 0;
+document.getElementById("genero").selectedIndex = 0;
+document.getElementById("detalheManga").selectedIndex = 0;
 
   historico.push({
 
@@ -85,7 +127,7 @@ function cadastrarProduto(){
 
   salvarDados();
 
-  atualizarTabela();
+  aplicarFiltros();
 
   atualizarHistorico();
 
@@ -115,25 +157,35 @@ function atualizarTabela(){
 
         <td>${produto.tamanho}</td>
 
-        <td>
-          R$ ${produto.preco}
-        </td>
+        <td>R$ ${produto.preco}</td>
 
         <td>
-
           <span class="badge ${
             produto.tipo === "Conjunto"
             ? "conjunto"
             : "simples"
           }">
-
             ${produto.tipo}
-
           </span>
-
         </td>
 
-        <td>${produto.genero}</td>
+        <td>
+          ${
+            produto.genero === "Masculino"
+            ? "👨 Masculino"
+            : produto.genero === "Feminino"
+            ? "👩 Feminino"
+            : "🧑 Unissex"
+          }
+        </td>
+
+        <td>
+          ${
+            produto.detalheManga === "✨Com Detalhes"
+            ? "✨ Com detalhes"
+            : "🚫 Sem detalhes"
+          }
+        </td>
 
         <td>${produto.estoque}</td>
 
@@ -145,15 +197,13 @@ function atualizarTabela(){
 
           <button
             class="btn editar"
-            onclick="editarProduto(${index})"
-          >
+            onclick="editarProduto(${index})">
             Editar
           </button>
 
           <button
             class="btn excluir"
-            onclick="excluirProduto(${index})"
-          >
+            onclick="excluirProduto(${index})">
             Excluir
           </button>
 
@@ -171,7 +221,9 @@ function excluirProduto(index){
 
   salvarDados();
 
-  atualizarTabela();
+  aplicarFiltros();
+
+  atualizarHistorico();
 
   atualizarGrafico();
 }
@@ -205,7 +257,7 @@ function editarProduto(index){
 
     salvarDados();
 
-    atualizarTabela();
+    aplicarFiltros();
 
     atualizarHistorico();
 
@@ -239,34 +291,6 @@ function atualizarHistorico(){
     `;
   });
 }
-
-/* BUSCA */
-
-document
-.getElementById("busca")
-.addEventListener("input",()=>{
-
-  let termo =
-  document
-  .getElementById("busca")
-  .value
-  .toLowerCase();
-
-  let linhas =
-  document.querySelectorAll(
-    "#tabelaProdutos tr"
-  );
-
-  linhas.forEach(linha=>{
-
-    linha.style.display =
-    linha.innerText
-    .toLowerCase()
-    .includes(termo)
-    ? ""
-    : "none";
-  });
-});
 
 /* GRÁFICO */
 
@@ -310,6 +334,9 @@ function atualizarGrafico(){
     }
   });
 }
+
+//busca//
+
 function aplicarFiltros() {
 
   let cor =
@@ -331,28 +358,29 @@ function aplicarFiltros() {
 
   tabela.innerHTML = "";
 
-  produtos.forEach(produto => {
+  produtos.forEach((produto,index)=>{
 
     let correspondeBusca =
-      produto.nome.toLowerCase().includes(busca);
+    produto.nome.toLowerCase().includes(busca);
 
     let correspondeCor =
-      cor === "" || produto.cor === cor;
+    cor === "" || produto.cor === cor;
 
     let correspondeTamanho =
-      tamanho === "" || produto.tamanho === tamanho;
+    tamanho === "" || produto.tamanho === tamanho;
 
     let correspondeGenero =
-      genero === "" || produto.genero === genero;
+    genero === "" || produto.genero === genero;
 
-    if (
+    if(
       correspondeBusca &&
       correspondeCor &&
       correspondeTamanho &&
       correspondeGenero
-    ) {
+    ){
 
       tabela.innerHTML += `
+
         <tr class="${
           produto.restante <= 5
           ? "estoque-baixo"
@@ -360,8 +388,11 @@ function aplicarFiltros() {
         }">
 
           <td>${produto.nome}</td>
+
           <td>${produto.cor}</td>
+
           <td>${produto.tamanho}</td>
+
           <td>R$ ${produto.preco}</td>
 
           <td>
@@ -374,31 +405,67 @@ function aplicarFiltros() {
             </span>
           </td>
 
-          <td>${produto.genero}</td>
+          <td>
+            ${
+              produto.genero === "Masculino"
+              ? "👨 Masculino"
+              : produto.genero === "Feminino"
+              ? "👩 Feminino"
+              : "🧑 Unissex"
+            }
+          </td>
+
+          <td>
+            ${
+              produto.detalheManga === "✨Com Detalhes"
+              ? "✨ Com detalhes"
+              : "🚫 Sem detalhes"
+            }
+          </td>
 
           <td>${produto.estoque}</td>
+
           <td>${produto.vendidos}</td>
+
           <td>${produto.restante}</td>
 
           <td>
+
             <button
               class="btn editar"
-              onclick="editarProduto(${produtos.indexOf(produto)})">
+              onclick="editarProduto(${index})">
               Editar
             </button>
 
             <button
               class="btn excluir"
-              onclick="excluirProduto(${produtos.indexOf(produto)})">
+              onclick="excluirProduto(${index})">
               Excluir
             </button>
+
           </td>
 
         </tr>
+
       `;
     }
   });
 }
+document
+.getElementById("filtroCor")
+.addEventListener("change", aplicarFiltros);
+
+document
+.getElementById("filtroTamanho")
+.addEventListener("change", aplicarFiltros);
+
+document
+.getElementById("filtroGenero")
+.addEventListener("change", aplicarFiltros);
+
+document
+.getElementById("busca")
+.addEventListener("input", aplicarFiltros);
 
 atualizarTabela();
 
