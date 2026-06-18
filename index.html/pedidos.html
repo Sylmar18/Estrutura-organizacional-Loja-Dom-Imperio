@@ -125,17 +125,40 @@
       <option>Dinheiro</option>
 
       <option>Cartão</option>
-
+     
     </select>
 
+     
+  <section class="cards-pedidos">
+
+    <div class= "card-mini">
+      <h3 id="totalPedidos">0</h3>
+      <p>Pedidos</p>
+    </div>
+
+    <div class= "card-mini">
+      <h3 id="faturamento">R$ 0,00</h3>
+      <p>faturamento</p>
+    </div>
+
+    <div class= "card-mini">
+      <h3 id="itensVendidos">0</h3>
+      <p>Itens Vendidos</p>
+    
+    </div>
+
+  </section>
+  
+  
+   
+
     <button onclick="registrarPedido()">
+          Registrar Pedido
+        </button>
 
-      Registrar Pedido
 
-    </button>
-
-  </div>
-
+    </div>
+    
 </section>
 
    <section class="tabela-container">
@@ -148,10 +171,11 @@
 
         <th>Cliente</th>
         <th>Produto</th>
-        <th>Qtd</th>
+        <th>Quantidade</th>
         <th>Pagamento</th>
         <th>Total</th>
         <th>Data</th>
+        <th>Ações</th>
 
       </tr>
 
