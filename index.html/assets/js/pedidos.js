@@ -8,6 +8,10 @@ JSON.parse(
   localStorage.getItem("produtos")
 ) || [];
 
+/* ==========================
+   CARREGAR PRODUTOS
+========================== */
+
 function carregarProdutosPedido(){
 
   let select =
@@ -37,6 +41,10 @@ function carregarProdutosPedido(){
 
 }
 
+/* ==========================
+   REGISTRAR PEDIDO
+========================== */
+
 function registrarPedido(){
 
   let cliente =
@@ -64,18 +72,33 @@ function registrarPedido(){
   ).value;
 
   if(cliente.trim() === ""){
-    alert("Digite o nome do cliente.");
+
+    alert(
+      "Digite o nome do cliente."
+    );
+
     return;
+
   }
 
   if(!produtoId){
-    alert("Selecione um produto.");
+
+    alert(
+      "Selecione um produto."
+    );
+
     return;
+
   }
 
   if(quantidade <= 0){
-    alert("Quantidade inválida.");
+
+    alert(
+      "Quantidade inválida."
+    );
+
     return;
+
   }
 
   let produto =
@@ -84,14 +107,34 @@ function registrarPedido(){
   );
 
   if(!produto){
-    alert("Produto não encontrado.");
+
+    alert(
+      "Produto não encontrado."
+    );
+
     return;
+
+  }
+
+  if(quantidade > produto.restante){
+
+    alert(
+      "Estoque insuficiente. Disponível: " +
+      produto.restante
+    );
+
+    return;
+
   }
 
   let total =
-  produto.preco * quantidade;
+  produto.preco *
+  quantidade;
 
   let pedido = {
+
+    produtoId:
+    produto.id,
 
     cliente,
 
@@ -123,9 +166,21 @@ function registrarPedido(){
 
   pedidos.push(pedido);
 
+  produto.vendidos +=
+  quantidade;
+
+  produto.restante =
+  produto.estoque -
+  produto.vendidos;
+
   localStorage.setItem(
     "pedidos",
     JSON.stringify(pedidos)
+  );
+
+  localStorage.setItem(
+    "produtos",
+    JSON.stringify(produtos)
   );
 
   document.getElementById(
@@ -141,9 +196,14 @@ function registrarPedido(){
   ).value = "";
 
   atualizarTabelaPedidos();
+
   atualizarResumo();
 
 }
+
+/* ==========================
+   EDITAR PEDIDO
+========================== */
 
 function editarPedido(index){
 
@@ -168,9 +228,58 @@ function editarPedido(index){
   if(
     novaQuantidade <= 0
   ){
-    alert("Quantidade inválida.");
+
+    alert(
+      "Quantidade inválida."
+    );
+
     return;
+
   }
+
+  let produto =
+  produtos.find(
+    p => p.id === pedido.produtoId
+  );
+
+  if(!produto){
+
+    alert(
+      "Produto não encontrado."
+    );
+
+    return;
+
+  }
+
+  let diferenca =
+  novaQuantidade -
+  pedido.quantidade;
+
+  if(
+    diferenca > produto.restante
+  ){
+
+    alert(
+      "Estoque insuficiente."
+    );
+
+    return;
+
+  }
+
+  produto.vendidos +=
+  diferenca;
+
+  if(
+    produto.vendidos < 0
+  ){
+    produto.vendidos = 0;
+  }
+
+  produto.restante =
+  produto.estoque -
+  produto.vendidos;
 
   let valorUnitario =
   pedido.total /
@@ -188,10 +297,81 @@ function editarPedido(index){
     JSON.stringify(pedidos)
   );
 
+  localStorage.setItem(
+    "produtos",
+    JSON.stringify(produtos)
+  );
+
   atualizarTabelaPedidos();
+
   atualizarResumo();
 
 }
+
+/* ==========================
+   EXCLUIR PEDIDO
+========================== */
+
+function excluirPedido(index){
+
+  let confirmar =
+  confirm(
+    "Deseja excluir esse pedido?"
+  );
+
+  if(!confirmar){
+    return;
+  }
+
+  let pedido =
+  pedidos[index];
+
+  let produto =
+  produtos.find(
+    p => p.id === pedido.produtoId
+  );
+
+  if(produto){
+
+    produto.vendidos -=
+    pedido.quantidade;
+
+    if(
+      produto.vendidos < 0
+    ){
+      produto.vendidos = 0;
+    }
+
+    produto.restante =
+    produto.estoque -
+    produto.vendidos;
+
+    localStorage.setItem(
+      "produtos",
+      JSON.stringify(produtos)
+    );
+
+  }
+
+  pedidos.splice(
+    index,
+    1
+  );
+
+  localStorage.setItem(
+    "pedidos",
+    JSON.stringify(pedidos)
+  );
+
+  atualizarTabelaPedidos();
+
+  atualizarResumo();
+
+}
+
+/* ==========================
+   TABELA
+========================== */
 
 function atualizarTabelaPedidos(){
 
@@ -202,68 +382,106 @@ function atualizarTabelaPedidos(){
 
   tabela.innerHTML = "";
 
-  pedidos.forEach((pedido,index)=>{
+  pedidos.forEach(
+    (pedido,index)=>{
 
-    tabela.innerHTML += `
-      <tr>
+      tabela.innerHTML += `
 
-        <td>${pedido.cliente}</td>
+        <tr>
 
-        <td>
-          ${pedido.produto}
-          <br>
-          <small>
-            ${pedido.cor}
-            |
-            ${pedido.tamanho}
-          </small>
-        </td>
+          <td>
+            ${pedido.cliente}
+          </td>
 
-        <td>${pedido.quantidade}</td>
+          <td>
 
-        <td>${pedido.pagamento}</td>
+            ${pedido.produto}
 
-        <td>
-          R$ ${pedido.total.toFixed(2)}
-        </td>
+            <br>
 
-        <td>${pedido.data}</td>
+            <small>
 
-        <td>
+              ${pedido.cor}
+              |
+              ${pedido.tamanho}
+              |
+              ${pedido.genero}
+              |
+              ${pedido.detalheManga}
 
-          <button
-            class="btn editar"
-            onclick="editarPedido(${index})">
-            Editar
-          </button>
+            </small>
 
-        </td>
+          </td>
 
-      </tr>
-    `;
+          <td>
+            ${pedido.quantidade}
+          </td>
 
-  });
+          <td>
+            ${pedido.pagamento}
+          </td>
+
+          <td>
+            R$ ${pedido.total.toFixed(2)}
+          </td>
+
+          <td>
+            ${pedido.data}
+          </td>
+
+          <td>
+
+            <button
+              class="btn editar"
+              onclick="editarPedido(${index})">
+
+              Editar
+
+            </button>
+
+            <button
+              class="btn excluir"
+              onclick="excluirPedido(${index})">
+
+              Excluir
+
+            </button>
+
+          </td>
+
+        </tr>
+
+      `;
+
+    }
+  );
 
 }
 
+/* ==========================
+   RESUMO
+========================== */
+
 function atualizarResumo(){
 
-  let totalPedidos = 0;
-  let faturamento = 0;
-  let itensVendidos = 0;
-
-  totalPedidos =
+  let totalPedidos =
   pedidos.length;
 
-  pedidos.forEach(pedido => {
+  let faturamento = 0;
 
-    faturamento +=
-    pedido.total;
+  let itensVendidos = 0;
 
-    itensVendidos +=
-    pedido.quantidade;
+  pedidos.forEach(
+    pedido => {
 
-  });
+      faturamento +=
+      pedido.total;
+
+      itensVendidos +=
+      pedido.quantidade;
+
+    }
+  );
 
   document.getElementById(
     "totalPedidos"
@@ -283,6 +501,12 @@ function atualizarResumo(){
 
 }
 
+/* ==========================
+   INICIAR SISTEMA
+========================== */
+
 carregarProdutosPedido();
+
 atualizarTabelaPedidos();
+
 atualizarResumo();
