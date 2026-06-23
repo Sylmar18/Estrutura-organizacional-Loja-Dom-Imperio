@@ -293,46 +293,40 @@ function atualizarHistorico(){
 }
 
 /* GRÁFICO */
-
-let grafico;
-
+let grafico = null;
 function atualizarGrafico(){
 
   let ctx =
-  document
-  .getElementById("graficoVendas");
+  document.getElementById("graficoVendas");
 
   let nomes =
-  produtos.map(p=>p.nome);
+  produtos.map(p => p.nome);
 
   let vendas =
-  produtos.map(p=>p.vendidos);
+  produtos.map(p => p.vendidos);
 
   if(grafico){
-
     grafico.destroy();
   }
 
-  grafico =
-  new Chart(ctx,{
+  grafico = new Chart(ctx, {
+    type: "bar",
 
-    type:"bar",
+    data: {
+      labels: nomes,
 
-    data:{
-
-      labels:nomes,
-
-      datasets:[{
-
-        label:"Vendas",
-
-        data:vendas,
-
-        borderWidth:1
-
+      datasets: [{
+        label: "Vendas",
+        data: vendas,
+        borderWidth: 1
       }]
+    },
+
+    options: {
+      responsive: true
     }
   });
+
 }
 
 //busca//
