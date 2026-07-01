@@ -979,6 +979,44 @@ th,td{
     transform:translateY(-2px);
 }
 
+.status{
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    color:white;
+
+    font-weight:600;
+
+    font-size:13px;
+
+}
+
+.verde{
+
+    background:#2ecc71;
+
+}
+
+.laranja{
+
+    background:#f39c12;
+
+}
+
+.azul{
+
+    background:#3498db;
+
+}
+
+.vermelho{
+
+    background:#e74c3c;
+
+}
+
 
 .tabela-container{
     background:#1e1e2f;

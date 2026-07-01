@@ -35,6 +35,9 @@ function cadastrarProduto(){
     document.getElementById("preco").value
   );
 
+  let marca =
+  document.getElementById("marca").value;
+
   let tipo =
   document.getElementById("tipo").value;
   
@@ -89,6 +92,7 @@ if(vendidos < 0){
     id:Date.now(),
 
     nome,
+    marca,
     cor,
     tamanho,
     preco,
@@ -112,6 +116,7 @@ document.getElementById("vendidos").value = "";
 document.getElementById("tipo").selectedIndex = 0;
 document.getElementById("genero").selectedIndex = 0;
 document.getElementById("detalheManga").selectedIndex = 0;
+document.getElementById("marca").selectedIndex = 0;
 
   historico.push({
 
@@ -152,6 +157,8 @@ function atualizarTabela(){
       }">
 
         <td>${produto.nome}</td>
+
+        <td>${produto.marca}</td>
 
         <td>${produto.cor}</td>
 

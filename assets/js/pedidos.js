@@ -133,6 +133,8 @@ function registrarPedido(){
 
   let pedido = {
 
+    cliente,
+
     produtoId:
     produto.id,
 
@@ -159,10 +161,69 @@ function registrarPedido(){
 
     total,
 
+       valorPago: Number(
+        document.getElementById("valorPago").value
+    ) || 0,
+
+    dataEntrega:
+    document.getElementById("dataEntrega").value,
+
     data:
     new Date().toLocaleString()
 
   };
+
+  function obterStatus(pedido){
+
+    let hoje = new Date();
+
+    let entrega =
+    new Date(pedido.dataEntrega);
+
+    if(pedido.valorPago >= pedido.total){
+
+        return {
+            texto:"Pago",
+            cor:"verde",
+            icone:"✅"
+        };
+
+    }
+
+    if(
+        pedido.valorPago > 0 &&
+        pedido.valorPago < pedido.total
+    ){
+
+        return {
+            texto:"Pagamento Parcial",
+            cor:"laranja",
+            icone:"🟠"
+        };
+
+    }
+
+    if(entrega >= hoje){
+
+        return {
+            texto:"No Prazo",
+            cor:"azul",
+            icone:"🔵"
+        };
+
+    }
+
+    return {
+
+        texto:"Atrasado",
+
+        cor:"vermelho",
+
+        icone:"🔴"
+
+    };
+
+}
 
   pedidos.push(pedido);
 
@@ -374,6 +435,20 @@ function excluirPedido(index){
 ========================== */
 
 function atualizarTabelaPedidos(){
+
+  let status = 
+  obterStatus(pedido);
+
+  <td>
+
+<span class="status ${status.cor}">
+
+${status.icone}
+${status.texto}
+
+</span>
+
+</td>
 
   let tabela =
   document.getElementById(
