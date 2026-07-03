@@ -69,7 +69,7 @@ rel="stylesheet">
       <nav class="menu">
 
         <a
-          href="dashboard.html"
+          href="menu.html"
           class="active"
         >
 
@@ -239,11 +239,102 @@ rel="stylesheet">
 
             <p>pedidos</p>
 
+            
+
           </div>
 
         </div>
 
-      </section>
+        <div class="card-info">
+
+        <div class="icon-box">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+        </div>
+
+        <div class="card-texto">
+
+            <h3 id="recebido">
+                R$ 0
+            </h3>
+
+            <p>Recebido</p>
+
+        </div>
+
+    </div>
+
+    <!-- FATURAMENTO -->
+
+    <div class="card-info">
+
+        <div class="icon-box">
+
+            <i class="fa-solid fa-chart-column"></i>
+
+        </div>
+
+        <div class="card-texto">
+
+            <h3 id="faturamento">
+                R$ 0
+            </h3>
+
+            <p>Faturamento</p>
+
+        </div>
+
+    </div>
+
+
+<section class="status-dashboard">
+
+    <div
+        class="status-card pago"
+        onclick="abrirPedidos('pagos')"
+    >
+
+        <h2 id="pagos">0</h2>
+
+        <p>🟢 Pagos</p>
+
+    </div>
+
+    <div
+        class="status-card parcial"
+        onclick="abrirPedidos('parciais')"
+    >
+
+        <h2 id="parciais">0</h2>
+
+        <p>🟠 Pagamento Parcial</p>
+
+    </div>
+
+    <div
+        class="status-card prazo"
+        onclick="abrirPedidos('prazo')"
+    >
+
+        <h2 id="prazo">0</h2>
+
+        <p>🔵 No Prazo</p>
+
+    </div>
+
+    <div
+        class="status-card atrasado"
+        onclick="abrirPedidos('atrasados')"
+    >
+
+        <h2 id="atrasados">0</h2>
+
+        <p>🔴 Atrasado</p>
+
+    </div>
+
+</section>
 
       <!-- FOOTER CENTRAL -->
 

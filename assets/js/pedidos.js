@@ -1,23 +1,23 @@
 let pedidos =
-JSON.parse(
-  localStorage.getItem("pedidos")
-) || [];
+  JSON.parse(
+    localStorage.getItem("pedidos")
+  ) || [];
 
 let produtos =
-JSON.parse(
-  localStorage.getItem("produtos")
-) || [];
+  JSON.parse(
+    localStorage.getItem("produtos")
+  ) || [];
 
 /* ==========================
    CARREGAR PRODUTOS
 ========================== */
 
-function carregarProdutosPedido(){
+function carregarProdutosPedido() {
 
   let select =
-  document.getElementById(
-    "produtoPedido"
-  );
+    document.getElementById(
+      "produtoPedido"
+    );
 
   select.innerHTML = `
     <option value="">
@@ -41,37 +41,90 @@ function carregarProdutosPedido(){
 
 }
 
+//STATUS DO PEDIDO//
+
+function obterStatus(pedido) {
+
+  let hoje = new Date();
+
+  let entrega = new Date(pedido.dataEntrega);
+
+  if (pedido.valorPago >= pedido.total) {
+
+    return {
+      texto: "Pago",
+      cor: "Verde",
+      icone: "✅"
+
+    };
+  }
+
+  if (
+    pedido.valorPago > 0 &&
+    pedido.valorPago < pedido.total
+  ) {
+
+    return {
+      texto: "Parcial",
+      cor: "laranja",
+      icone: "🟠"
+    };
+
+  }
+
+  if (entrega >= hoje) {
+
+    return {
+      texto: "No Prazo",
+      cor: "azul",
+      icone: "🔵"
+    };
+
+  }
+
+  return {
+
+    texto: "Atrasado",
+
+    cor: "vermelho",
+
+    icone: "🔴"
+
+  };
+
+}
+
 /* ==========================
    REGISTRAR PEDIDO
 ========================== */
 
-function registrarPedido(){
+function registrarPedido() {
 
   let cliente =
-  document.getElementById(
-    "cliente"
-  ).value;
+    document.getElementById(
+      "cliente"
+    ).value;
 
   let produtoId =
-  Number(
-    document.getElementById(
-      "produtoPedido"
-    ).value
-  );
+    Number(
+      document.getElementById(
+        "produtoPedido"
+      ).value
+    );
 
   let quantidade =
-  Number(
-    document.getElementById(
-      "quantidadePedido"
-    ).value
-  );
+    Number(
+      document.getElementById(
+        "quantidadePedido"
+      ).value
+    );
 
   let pagamento =
-  document.getElementById(
-    "pagamento"
-  ).value;
+    document.getElementById(
+      "pagamento"
+    ).value;
 
-  if(cliente.trim() === ""){
+  if (cliente.trim() === "") {
 
     alert(
       "Digite o nome do cliente."
@@ -81,7 +134,7 @@ function registrarPedido(){
 
   }
 
-  if(!produtoId){
+  if (!produtoId) {
 
     alert(
       "Selecione um produto."
@@ -91,7 +144,7 @@ function registrarPedido(){
 
   }
 
-  if(quantidade <= 0){
+  if (quantidade <= 0) {
 
     alert(
       "Quantidade inválida."
@@ -102,11 +155,11 @@ function registrarPedido(){
   }
 
   let produto =
-  produtos.find(
-    p => p.id == produtoId
-  );
+    produtos.find(
+      p => p.id == produtoId
+    );
 
-  if(!produto){
+  if (!produto) {
 
     alert(
       "Produto não encontrado."
@@ -116,7 +169,7 @@ function registrarPedido(){
 
   }
 
-  if(quantidade > produto.restante){
+  if (quantidade > produto.restante) {
 
     alert(
       "Estoque insuficiente. Disponível: " +
@@ -128,32 +181,32 @@ function registrarPedido(){
   }
 
   let total =
-  produto.preco *
-  quantidade;
+    produto.preco *
+    quantidade;
 
   let pedido = {
 
     cliente,
 
     produtoId:
-    produto.id,
+      produto.id,
 
     cliente,
 
     produto:
-    produto.nome,
+      produto.nome,
 
     cor:
-    produto.cor,
+      produto.cor,
 
     tamanho:
-    produto.tamanho,
+      produto.tamanho,
 
     genero:
-    produto.genero,
+      produto.genero,
 
     detalheManga:
-    produto.detalheManga,
+      produto.detalheManga,
 
     quantidade,
 
@@ -161,78 +214,27 @@ function registrarPedido(){
 
     total,
 
-       valorPago: Number(
-        document.getElementById("valorPago").value
+    valorPago: Number(
+      document.getElementById("valorPago").value
     ) || 0,
 
     dataEntrega:
-    document.getElementById("dataEntrega").value,
+      document.getElementById("dataEntrega").value,
 
     data:
-    new Date().toLocaleString()
+      new Date().toLocaleString()
 
   };
 
-  function obterStatus(pedido){
-
-    let hoje = new Date();
-
-    let entrega =
-    new Date(pedido.dataEntrega);
-
-    if(pedido.valorPago >= pedido.total){
-
-        return {
-            texto:"Pago",
-            cor:"verde",
-            icone:"✅"
-        };
-
-    }
-
-    if(
-        pedido.valorPago > 0 &&
-        pedido.valorPago < pedido.total
-    ){
-
-        return {
-            texto:"Pagamento Parcial",
-            cor:"laranja",
-            icone:"🟠"
-        };
-
-    }
-
-    if(entrega >= hoje){
-
-        return {
-            texto:"No Prazo",
-            cor:"azul",
-            icone:"🔵"
-        };
-
-    }
-
-    return {
-
-        texto:"Atrasado",
-
-        cor:"vermelho",
-
-        icone:"🔴"
-
-    };
-
-}
 
   pedidos.push(pedido);
 
   produto.vendidos +=
-  quantidade;
+    quantidade;
 
   produto.restante =
-  produto.estoque -
-  produto.vendidos;
+    produto.estoque -
+    produto.vendidos;
 
   localStorage.setItem(
     "pedidos",
@@ -266,29 +268,29 @@ function registrarPedido(){
    EDITAR PEDIDO
 ========================== */
 
-function editarPedido(index){
+function editarPedido(index) {
 
   let pedido =
-  pedidos[index];
+    pedidos[index];
 
   let novaQuantidade =
-  prompt(
-    "Nova quantidade:",
-    pedido.quantidade
-  );
+    prompt(
+      "Nova quantidade:",
+      pedido.quantidade
+    );
 
-  if(
+  if (
     novaQuantidade === null
-  ){
+  ) {
     return;
   }
 
   novaQuantidade =
-  Number(novaQuantidade);
+    Number(novaQuantidade);
 
-  if(
+  if (
     novaQuantidade <= 0
-  ){
+  ) {
 
     alert(
       "Quantidade inválida."
@@ -299,11 +301,11 @@ function editarPedido(index){
   }
 
   let produto =
-  produtos.find(
-    p => p.id === pedido.produtoId
-  );
+    produtos.find(
+      p => p.id === pedido.produtoId
+    );
 
-  if(!produto){
+  if (!produto) {
 
     alert(
       "Produto não encontrado."
@@ -314,12 +316,12 @@ function editarPedido(index){
   }
 
   let diferenca =
-  novaQuantidade -
-  pedido.quantidade;
+    novaQuantidade -
+    pedido.quantidade;
 
-  if(
+  if (
     diferenca > produto.restante
-  ){
+  ) {
 
     alert(
       "Estoque insuficiente."
@@ -330,28 +332,28 @@ function editarPedido(index){
   }
 
   produto.vendidos +=
-  diferenca;
+    diferenca;
 
-  if(
+  if (
     produto.vendidos < 0
-  ){
+  ) {
     produto.vendidos = 0;
   }
 
   produto.restante =
-  produto.estoque -
-  produto.vendidos;
+    produto.estoque -
+    produto.vendidos;
 
   let valorUnitario =
-  pedido.total /
-  pedido.quantidade;
+    pedido.total /
+    pedido.quantidade;
 
   pedido.quantidade =
-  novaQuantidade;
+    novaQuantidade;
 
   pedido.total =
-  valorUnitario *
-  novaQuantidade;
+    valorUnitario *
+    novaQuantidade;
 
   localStorage.setItem(
     "pedidos",
@@ -369,43 +371,84 @@ function editarPedido(index){
 
 }
 
+function alterarPagamento(index){
+
+  let pedido = pedidos[index];
+
+  let novoValor = prompt(
+    "Valor pago:",
+    pedido.valorPago
+  );
+
+  if(novoValor === null){
+    return;
+  }
+
+  novoValor = Number(novoValor);
+
+  if(isNaN(novoValor) || novoValor < 0){
+    alert("Valor inválido.");
+    return;
+  }
+
+      
+
+    if(novoValor > pedido.total){
+
+        alert("O valor pago não pode ser maior que o total.");
+
+        return;
+
+    }
+
+  pedido.valorPago = novoValor;
+
+  localStorage.setItem(
+    "pedidos",
+    JSON.stringify(pedidos)
+  );
+
+  atualizarTabelaPedidos();
+
+}
+
 /* ==========================
    EXCLUIR PEDIDO
 ========================== */
 
-function excluirPedido(index){
+function excluirPedido(index) {
 
   let confirmar =
-  confirm(
-    "Deseja excluir esse pedido?"
-  );
+    confirm(
+      "Deseja excluir esse pedido?"
+    );
 
-  if(!confirmar){
+  if (!confirmar) {
     return;
   }
 
   let pedido =
-  pedidos[index];
+    pedidos[index];
 
   let produto =
-  produtos.find(
-    p => p.id === pedido.produtoId
-  );
+    produtos.find(
+      p => p.id === pedido.produtoId
+    );
 
-  if(produto){
+  if (produto) {
 
     produto.vendidos -=
-    pedido.quantidade;
+      pedido.quantidade;
 
-    if(
+    if (
       produto.vendidos < 0
-    ){
+    ) {
       produto.vendidos = 0;
     }
 
     produto.restante =
-    produto.estoque -
-    produto.vendidos;
+      produto.estoque -
+      produto.vendidos;
 
     localStorage.setItem(
       "produtos",
@@ -434,31 +477,19 @@ function excluirPedido(index){
    TABELA
 ========================== */
 
-function atualizarTabelaPedidos(){
-
-  let status = 
-  obterStatus(pedido);
-
-  <td>
-
-<span class="status ${status.cor}">
-
-${status.icone}
-${status.texto}
-
-</span>
-
-</td>
+function atualizarTabelaPedidos() {
 
   let tabela =
-  document.getElementById(
-    "tabelaPedidos"
-  );
+    document.getElementById(
+      "tabelaPedidos"
+    );
 
   tabela.innerHTML = "";
 
   pedidos.forEach(
-    (pedido,index)=>{
+    (pedido, index) => {
+
+      let status = obterStatus(pedido);
 
       tabela.innerHTML += `
 
@@ -486,41 +517,61 @@ ${status.texto}
 
             </small>
 
-          </td>
+            </td>
+
+            <td>
+${pedido.quantidade}
+</td>
+
+ <td>           
+  ${pedido.pagamento}
+</td>
+
+<td>
+  R$ ${pedido.total.toFixed(2)}
+</td>
+
+<td>
+  R$ ${pedido.valorPago.toFixed(2)}
+</td>
+
+<td>
+  ${pedido.data}
+</td>
+
+        <td>
+
+          <span class="status ${status.cor}">
+
+           ${status.icone}
+           ${status.texto}
+
+           </span>
+
+           </td>
+
 
           <td>
-            ${pedido.quantidade}
-          </td>
 
-          <td>
-            ${pedido.pagamento}
-          </td>
+          <button
+class="btn editar"
+onclick="editarPedido(${index})">
+Quantiddade
+</button>
 
-          <td>
-            R$ ${pedido.total.toFixed(2)}
-          </td>
+<button
+class="btn pagamento"
+onclick="alterarPagamento(${index})">
+💰 Pago
+</button>
 
-          <td>
-            ${pedido.data}
-          </td>
+<button
+class="btn excluir"
+onclick="excluirPedido(${index})">
+Excluir
+</button>
 
-          <td>
-
-            <button
-              class="btn editar"
-              onclick="editarPedido(${index})">
-
-              Editar
-
-            </button>
-
-            <button
-              class="btn excluir"
-              onclick="excluirPedido(${index})">
-
-              Excluir
-
-            </button>
+  
 
           </td>
 
@@ -531,16 +582,17 @@ ${status.texto}
     }
   );
 
+
 }
 
 /* ==========================
    RESUMO
 ========================== */
 
-function atualizarResumo(){
+function atualizarResumo() {
 
   let totalPedidos =
-  pedidos.length;
+    pedidos.length;
 
   let faturamento = 0;
 
@@ -550,10 +602,10 @@ function atualizarResumo(){
     pedido => {
 
       faturamento +=
-      pedido.total;
+        pedido.total;
 
       itensVendidos +=
-      pedido.quantidade;
+        pedido.quantidade;
 
     }
   );
@@ -561,20 +613,21 @@ function atualizarResumo(){
   document.getElementById(
     "totalPedidos"
   ).textContent =
-  totalPedidos;
+    totalPedidos;
 
   document.getElementById(
     "faturamento"
   ).textContent =
-  "R$ " +
-  faturamento.toFixed(2);
+    "R$ " +
+    faturamento.toFixed(2);
 
   document.getElementById(
     "itensVendidos"
   ).textContent =
-  itensVendidos;
+    itensVendidos;
 
 }
+
 
 /* ==========================
    INICIAR SISTEMA
