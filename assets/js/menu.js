@@ -13,18 +13,34 @@ JSON.parse(localStorage.getItem("clientes")) || [];
 let pedidos =
 JSON.parse(localStorage.getItem("pedidos")) || [];
 
-function atualizarDashboard(){
+function atualizarMenu(){
+
+    produtos = 
+    JSON.parse(localStorage.getItem("produtos")) || [];
+
+    clientes =
+    JSON.parse(localStorage.getItem("clientes")) || [];
+
+    pedidos =
+    JSON.parse(localStorage.getItem("pedidos")) || [];
 
     // Cards principais
 
-    document.getElementById("totalProdutos").textContent =
-    produtos.length;
+  
+    const totalProdutos = document.getElementById("totalProdutos");
+if(totalProdutos){
+    totalProdutos.textContent = produtos.length;
+}
 
-    document.getElementById("totalClientes").textContent =
-    clientes.length;
+const totalClientes = document.getElementById("totalClientes");
+if(totalClientes){
+    totalClientes.textContent =  clientes.length;
+}
 
-    document.getElementById("totalPedidos").textContent =
-    pedidos.length;
+const totalPedidos= document.getElementById("totalPedidos");
+if(totalPedidos){
+    totalPedidos.textContent = pedidos.length;
+}
 
     let faturamento = 0;
     let recebido = 0;
@@ -42,14 +58,46 @@ function atualizarDashboard(){
 
     });
 
-    document.getElementById("faturamento").textContent =
+
+    const faturamentoCard =
+document.getElementById("faturamento");
+
+if(faturamentoCard){
+    faturamentoCard.textContent =
     "R$ " + faturamento.toFixed(2);
+}
 
-    document.getElementById("recebido").textContent =
+const recebidoCard =
+document.getElementById("recebido");
+
+if(recebidoCard){
+    recebidoCard.textContent =
     "R$ " + recebido.toFixed(2);
+}
 
-    document.getElementById("receber").textContent =
+const valorReceber =
+document.getElementById("valorReceber");
+
+if(valorReceber){
+    valorReceber.textContent =
     "R$ " + receber.toFixed(2);
+}
+
+    const menuProdutos = document.getElementById("menuProdutos");
+const menuClientes = document.getElementById("menuClientes");
+const menuPedidos = document.getElementById("menuPedidos");
+
+if(menuProdutos){
+    menuProdutos.textContent = produtos.length;
+}
+
+if(menuClientes){
+    menuClientes.textContent = clientes.length;
+}
+
+if(menuPedidos){
+    menuPedidos.textContent = pedidos.length;
+}
 
     // Status dos pedidos
 
@@ -91,19 +139,29 @@ function atualizarDashboard(){
 
     });
 
-    document.getElementById("pagos").textContent =
-    pagos;
+const cardPagos = document.getElementById("pagos");
+if(cardPagos){
+    cardPagos.textContent = pagos;
+}
 
-    document.getElementById("parciais").textContent =
-    parciais;
+const cardParciais = document.getElementById("parciais");
+if(cardParciais){
+    cardParciais.textContent = parciais;
+}
 
-    document.getElementById("prazo").textContent =
-    prazo;
+const cardPrazo = document.getElementById("prazo");
+if(cardPrazo){
+    cardPrazo.textContent = prazo;
+}
 
-    document.getElementById("atrasados").textContent =
-    atrasados;
+const cardAtrasados = document.getElementById("atrasados");
+if(cardAtrasados){
+    cardAtrasados.textContent = atrasados;
+}
 
-    function abrirPedidos(filtro){
+}
+
+ function abrirPedidos(filtro){
 
     localStorage.setItem(
         "filtroPedidos",
@@ -114,6 +172,11 @@ function atualizarDashboard(){
 
 }
 
-}
 
-atualizarDashboard();
+atualizarMenu();
+
+window.addEventListener("focus", atualizarMenu);
+
+window.addEventListener("storage", atualizarMenu);
+
+setInterval(atualizarMenu, 5000);

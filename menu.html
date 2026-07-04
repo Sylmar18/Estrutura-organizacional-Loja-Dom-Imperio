@@ -66,43 +66,38 @@ rel="stylesheet">
 
       <!-- MENU -->
 
-      <nav class="menu">
+     <nav class="menu">
 
-        <a
-          href="menu.html"
-          class="active"
-        >
+    <a href="menu.html" class="active">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>Menu</span>
+    </a>
 
-          <i class="fa-solid fa-chart-line"></i>
+    <a href="produtos.html">
+        <i class="fa-solid fa-box"></i>
 
-          <span>Menu</span>
+        <span>Produtos</span>
 
-        </a>
+        <span id="menuProdutos" class="menu-badge">0</span>
+    </a>
 
-        <a href="produtos.html">
+    <a href="clientes.html">
+        <i class="fa-solid fa-users"></i>
 
-          <i class="fa-solid fa-box"></i>
+        <span>Clientes</span>
 
-          <span>Produtos</span>
+        <span id="menuClientes" class="menu-badge">0</span>
+    </a>
 
-        </a>
+    <a href="pedidos.html">
+        <i class="fa-solid fa-cart-shopping"></i>
 
-        <a href="clientes.html">
+        <span>Pedidos</span>
 
-          <i class="fa-solid fa-users"></i>
+        <span id="menuPedidos" class="menu-badge">0</span>
+    </a>
 
-          <span>Clientes</span>
-
-        </a>
-  <a href="pedidos.html">
-
-          <i class="fa-solid fa-users"></i>
-
-          <span>Pedidos</span>
-
-        </a>
-
-      </nav>
+</nav>
 
       <!-- FOOTER SIDEBAR -->
 
@@ -235,7 +230,7 @@ rel="stylesheet">
 
           <div class="card-texto">
 
-            <h3 id="totalpedidos">0</h3>
+            <h3 id="totalPedidos">0</h3>
 
             <p>pedidos</p>
 
@@ -286,6 +281,7 @@ rel="stylesheet">
         </div>
 
     </div>
+    
 
 
 <section class="status-dashboard">
@@ -333,8 +329,8 @@ rel="stylesheet">
         <p>🔴 Atrasado</p>
 
     </div>
-
 </section>
+
 
       <!-- FOOTER CENTRAL -->
 
@@ -351,13 +347,8 @@ rel="stylesheet">
     </main>
 
   </div>
-
-  <!-- SCRIPTS -->
-
-  <script src="assets/js/db.js"></script>
-
-  <script src="assets/js/dashboard.js"></script>
-
+  
+  
   <!-- DATA AUTOMÁTICA -->
 
   <script>
@@ -368,6 +359,11 @@ rel="stylesheet">
       data.toLocaleDateString("pt-BR");
 
   </script>
+
+    <!-- SCRIPTS -->
+
+  <script src="assets/js/db.js"></script>
+<script src="assets/js/menu.js"></script>
 
 </body>
 
