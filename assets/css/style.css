@@ -1140,3 +1140,380 @@ th,td{
 .card-mini p{
     color:#bdbdbd;
 }
+
+/* =========================
+   GRID (MESMO PADRÃO DO SISTEMA)
+========================= */
+.clientes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 20px;
+}
+
+/* =========================
+   CARD CLIENTE (BASE DO SISTEMA)
+   reaproveita estilo dos seus cards-info
+========================= */
+.card-cliente {
+  position: relative;
+
+  background: linear-gradient(
+    145deg,
+    rgba(10,15,30,0.92),
+    rgba(5,8,18,0.96)
+  );
+
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 28px;
+
+  padding: 24px;
+
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  transition: 0.3s;
+
+  box-shadow: 0 10px 35px rgba(0,0,0,0.45);
+  overflow: hidden;
+}
+
+/* =========================
+   HOVER PADRÃO DO SISTEMA
+========================= */
+.card-cliente:hover {
+  transform: translateY(-6px);
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 0 0 25px rgba(255,255,255,0.06);
+}
+
+/* =========================
+   LINHA DE DESTAQUE (igual efeito dos cards-info)
+========================= */
+.card-cliente::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  width: 60%;
+  height: 2px;
+  background: white;
+  opacity: 0.6;
+  filter: blur(2px);
+}
+
+/* =========================
+   TEXTO
+========================= */
+.card-cliente h3 {
+  font-size: 18px;
+  color: #e5e7eb;
+}
+
+.card-cliente p {
+  font-size: 14px;
+  color: #bfc7d5;
+}
+
+/* =========================
+   STATUS (mantido simples e consistente)
+========================= */
+.status {
+  display: inline-block;
+  width: fit-content;
+
+  padding: 6px 12px;
+  border-radius: 20px;
+
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.ativo {
+  background: #22c55e;
+  color: white;
+}
+
+.inativo {
+  background: #f59e0b;
+  color: white;
+}
+
+.bloqueado {
+  background: #ef4444;
+  color: white;
+}
+
+/* =========================
+   BOTÕES (MESMO PADRÃO DO SISTEMA)
+========================= */
+.btn-card {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.btn-card button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+
+  color: white;
+  font-weight: 600;
+
+  transition: 0.3s;
+}
+
+.editar {
+  background: #2563eb;
+}
+
+.pedidos {
+  background: #22c55e;
+}
+
+.btn-card button:hover {
+  transform: translateY(-3px);
+}
+
+/* =========================
+   FILTROS (IGUAL OUTRAS TELAS)
+========================= */
+.filtros {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.filtros input,
+.filtros select {
+  flex: 1;
+  padding: 14px;
+
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.1);
+
+  background: rgba(255,255,255,0.05);
+  color: white;
+
+  outline: none;
+}
+
+/* =========================
+   BOTÃO NOVO CLIENTE (mesmo estilo dos botões do sistema)
+========================= */
+.btn-novo {
+  padding: 50px 60px;
+
+  border: none;
+  border-radius: 14px;
+
+  background: #2563eb;
+  color: white;
+
+  cursor: pointer;
+  font-weight: bold;
+
+  transition: 0.3s;
+}
+
+.btn-novo:hover {
+  transform: translateY(-3px);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.logo {
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.logo img {
+  margin-bottom: 10px;
+}
+
+.content {
+  flex: 1;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* =========================
+   RESPONSIVO PADRÃO DO SISTEMA
+========================= */
+@media (max-width: 1024px) {
+  .clientes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .clientes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filtros {
+    flex-direction: column;
+  }
+
+  .btn-novo {
+    width: 100%;
+  }
+}
+
+/*Mobile*/
+
+@media (max-width: 768px) {
+
+  /* LAYOUT GERAL */
+  .layout {
+    flex-direction: column;
+  }
+
+  .content {
+    padding: 15px;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    width: 100%;
+    position: relative;
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .menu {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .menu a {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  /* TOPO */
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .topbar h1 {
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  .topbar p {
+    font-size: 14px;
+  }
+
+  /* DATA BOX */
+  .data-box {
+    width: 100%;
+    justify-content: center;
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  /* CARDS */
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .card-info {
+    flex-direction: row;
+    padding: 18px;
+  }
+
+  .icon-box {
+    width: 60px;
+    height: 60px;
+  }
+
+  /* FORMULÁRIOS */
+  .formulario {
+    width: 100%;
+    grid-template-columns: 1fr;
+    padding: 18px;
+  }
+
+  .formulario input,
+  .formulario select {
+    width: 100%;
+  }
+
+  /* FILTROS */
+  .filtros {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  /* TABELAS */
+  .tabela-container {
+    overflow-x: auto;
+    padding: 12px;
+  }
+
+  table {
+    min-width: 600px;
+  }
+
+  /* LOGO CENTRAL */
+  .logo-central img {
+    width: 200px;
+    transform: scale(1);
+  }
+
+  /* FOOTER DASHBOARD */
+  .footer-dashboard {
+    position: static;
+    transform: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 0;
+  }
+
+  .footer-dashboard span {
+    font-size: 13px;
+  }
+
+  /* STATUS DASHBOARD */
+  .status-dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .status-card {
+    padding: 18px;
+  }
+
+  /* PEDIDOS */
+  .pedido-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pedido-grid button {
+    height: 60px;
+  }
+
+}

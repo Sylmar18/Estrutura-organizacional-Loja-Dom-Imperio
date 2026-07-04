@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clientes</title>
+
+  <link
+  rel="stylesheet"
+  href="assets/css/style.css"
+>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
+
+<body>
 
   <div class="logo-central">
 
@@ -13,8 +22,109 @@
       alt=""
     >
      </div>
-   
-<body>
+
+  <div class="layout">
+
     
+
+    <!-- SIDEBAR (você já usa essa no seu sistema) -->
+    <div class="sidebar">
+
+    
+         <div class="logo">
+
+        <img
+          src="assets/img/logo.jpeg"
+          alt="Logo Dom Império"
+        >
+        </div>
+
+      <div class="menu">
+        <a href="index.html"><i class="fa fa-home"></i> Menu</a>
+        <a href="produtos.html"><i class="fa fa-box"></i> Produtos</a>
+        <a href="clientes.html" class="active"><i class="fa fa-users"></i> Clientes</a>
+        <a href="pedidos.html"><i class="fa fa-shopping-cart"></i> Pedidos</a>
+      </div>
+
+    </div>
+
+    <!-- CONTEÚDO -->
+    <div class="content">
+
+      <!-- TOPO -->
+      <div class="topbar">
+
+        <div>
+          <h1>Clientes</h1>
+          <p>😎</p>
+        </div>
+
+        <button class="btn-novo">
+          <i class="fa fa-plus"></i> Novo Cliente
+        </button>
+
+      </div>
+
+      <!-- FILTROS -->
+      <div class="filtros">
+
+        <input type="text" id="buscarCliente" placeholder="Buscar cliente...">
+
+        <select id="filtroStatus">
+          <option value="todos">Todos</option>
+          <option value="ativo">Ativo</option>
+          <option value="inativo">Inativo</option>
+          <option value="bloqueado">Bloqueado</option>
+        </select>
+
+      </div>
+
+      <!-- GRID DE CLIENTES -->
+      <div class="clientes-grid">
+
+        <!-- CARD EXEMPLO -->
+        <div class="card-cliente">
+
+          <h3><i class="fa fa-user"></i> João Silva</h3>
+
+          <p><i class="fa fa-phone"></i> (81) 99999-9999</p>
+       
+          <p><i class="fa fa-map-marker"></i> Maceió - AL</p>
+
+          <span class="status ativo">Ativo</span>
+
+          <div class="btn-card">
+            <button class="editar">Editar</button>
+            <button class="pedidos">Pedidos</button>
+          </div>
+
+        </div>
+
+        <!-- CARD 2 (exemplo) -->
+        <div class="card-cliente">
+
+          <h3><i class="fa fa-user"></i> Maria Souza</h3>
+
+          <p><i class="fa fa-phone"></i> (82) 98888-7777</p>
+
+          <p><i class="fa fa-map-marker"></i> Recife - PE</p>
+
+          <span class="status inativo">Inativo</span>
+
+          <div class="btn-card">
+            <button class="editar">Editar</button>
+            <button class="pedidos">Pedidos</button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+     <script src="assets/js/clientes.js"></script>
+
 </body>
 </html>
