@@ -2,10 +2,13 @@
 // BANCO DE DADOS - DOM IMPÉRIO
 // ===========================================
 
+
+
 const DB_NAME = "DomImperioDB";
-const DB_VERSION = 1;
+const DB_VERSION = 3;
 
 let db = null;
+
 
 // ===========================================
 // ABRIR BANCO
@@ -35,6 +38,20 @@ function abrirBanco() {
             db = event.target.result;
 
             console.log("Criando banco...");
+
+            if (!db.objectStoreNames.contains("historico")) {
+
+    const historico = db.createObjectStore("historico", {
+        keyPath: "id",
+        autoIncrement: true
+    });
+
+    historico.createIndex("produto", "produto");
+    historico.createIndex("movimento", "movimento");
+    historico.createIndex("data", "data");
+
+}
+
 
             // ===========================
             // CLIENTES
@@ -224,6 +241,7 @@ function contar(store) {
     });
 
 }
+
 
 // ===========================================
 // ABRE O BANCO AUTOMATICAMENTE

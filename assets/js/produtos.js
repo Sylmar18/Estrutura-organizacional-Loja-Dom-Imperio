@@ -1,25 +1,9 @@
-let produtos =
-JSON.parse(localStorage.getItem("produtos"))
-|| [];
+let produtos = [];
+let historico = [];
 
-let historico =
-JSON.parse(localStorage.getItem("historico"))
-|| [];
 
-function salvarDados(){
 
-  localStorage.setItem(
-    "produtos",
-    JSON.stringify(produtos)
-  );
-
-  localStorage.setItem(
-    "historico",
-    JSON.stringify(historico)
-  );
-}
-
-function cadastrarProduto(){
+async function cadastrarProduto(){
 
   let nome =
   document.getElementById("nome").value;
@@ -89,8 +73,6 @@ if(vendidos < 0){
 
   let produto = {
 
-    id:Date.now(),
-
     nome,
     marca,
     cor,
@@ -102,9 +84,16 @@ if(vendidos < 0){
     estoque,
     vendidos,
     restante
-  };
 
-produtos.push(produto);
+};
+
+await adicionar("produtos", produto);
+
+  produtos = await listar("produtos");
+
+   atualizarTabela();
+
+  
 
 document.getElementById("nome").value = "";
 document.getElementById("cor").value = "";
@@ -118,21 +107,25 @@ document.getElementById("genero").selectedIndex = 0;
 document.getElementById("detalheManga").selectedIndex = 0;
 document.getElementById("marca").selectedIndex = 0;
 
-  historico.push({
+const movimento = {
 
-    produto:nome,
+    produto: nome,
 
-    movimento:"Cadastro",
+    movimento: "Cadastro",
 
-    quantidade:estoque,
+    quantidade: estoque,
 
-    data:new Date().toLocaleString()
+    data: new Date().toLocaleString()
 
-  });
+};
 
-  salvarDados();
+historico.push(movimento);
 
+await adicionar("historico", movimento);
+  
   aplicarFiltros();
+
+  atualizarTabela();
 
   atualizarHistorico();
 
@@ -222,54 +215,74 @@ function atualizarTabela(){
   });
 }
 
-function excluirProduto(index){
 
-  produtos.splice(index,1);
 
-  salvarDados();
+async function excluirProduto(index){
 
-  aplicarFiltros();
+    if(!confirm("Deseja excluir este produto?")){
+        return;
+    }
 
-  atualizarHistorico();
+   const nomeProduto = produtos[index].nome;
 
-  atualizarGrafico();
+await excluir("produtos", produtos[index].id);
+
+const movimento = {
+
+    produto: nomeProduto,
+    movimento: "Exclusão",
+    quantidade: 0,
+    data: new Date().toLocaleString()
+
+};
+
+historico.push(movimento);
+
+await adicionar("historico", movimento);
+
+produtos = await listar("produtos");
+historico = await listar("historico");
+
+atualizarTabela();
+atualizarHistorico();
+atualizarGrafico();
+
 }
 
-function editarProduto(index){
+  async function editarProduto(index){
 
-  let novaVenda =
-  prompt("Quantidade vendida:");
+    let novaVenda = prompt("Quantidade vendida:");
 
-  if(novaVenda !== null){
+    if(novaVenda === null) return;
 
-    produtos[index].vendidos =
-    Number(novaVenda);
+    produtos[index].vendidos = Number(novaVenda);
 
     produtos[index].restante =
-    produtos[index].estoque -
-    produtos[index].vendidos;
+        produtos[index].estoque -
+        produtos[index].vendidos;
 
-    historico.push({
+await atualizar("produtos", produtos[index]);
 
-      produto:
-      produtos[index].nome,
+const movimento = {
 
-      movimento:"Venda",
+    produto: produtos[index].nome,
+    movimento: "Venda",
+    quantidade: produtos[index].vendidos,
+    data: new Date().toLocaleString()
 
-      quantidade:novaVenda,
+};
 
-      data:new Date().toLocaleString()
+historico.push(movimento);
 
-    });
+await adicionar("historico", movimento);
 
-    salvarDados();
+produtos = await listar("produtos");
+historico = await listar("historico");
 
-    aplicarFiltros();
+atualizarTabela();
+atualizarHistorico();
+atualizarGrafico();
 
-    atualizarHistorico();
-
-    atualizarGrafico();
-  }
 }
 
 function atualizarHistorico(){
@@ -390,6 +403,8 @@ function aplicarFiltros() {
 
           <td>${produto.nome}</td>
 
+          <td>${produto.marca}</td>
+
           <td>${produto.cor}</td>
 
           <td>${produto.tamanho}</td>
@@ -468,8 +483,17 @@ document
 .getElementById("busca")
 .addEventListener("input", aplicarFiltros);
 
-atualizarTabela();
+document.addEventListener("DOMContentLoaded", async () => {
 
-atualizarHistorico();
+    await abrirBanco();
 
-atualizarGrafico();
+    produtos = await listar("produtos");
+
+    historico = await listar("historico");
+
+    atualizarTabela();
+    atualizarHistorico();
+    atualizarGrafico();
+
+});
+
