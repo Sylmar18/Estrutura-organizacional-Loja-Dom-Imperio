@@ -1,12 +1,5 @@
-let pedidos =
-  JSON.parse(
-    localStorage.getItem("pedidos")
-  ) || [];
-
-let produtos =
-  JSON.parse(
-    localStorage.getItem("produtos")
-  ) || [];
+let pedidos = [];
+let produtos = [];
 
 /* ==========================
    CARREGAR PRODUTOS
@@ -98,7 +91,7 @@ function obterStatus(pedido) {
    REGISTRAR PEDIDO
 ========================== */
 
-function registrarPedido() {
+async function registrarPedido() {
 
   let cliente =
     document.getElementById(
@@ -227,24 +220,15 @@ function registrarPedido() {
   };
 
 
-  pedidos.push(pedido);
+ await adicionar("pedidos", pedido);
 
-  produto.vendidos +=
-    quantidade;
+produto.vendidos += quantidade;
+produto.restante = produto.estoque - produto.vendidos;
 
-  produto.restante =
-    produto.estoque -
-    produto.vendidos;
+await atualizar("produtos", produto);
 
-  localStorage.setItem(
-    "pedidos",
-    JSON.stringify(pedidos)
-  );
-
-  localStorage.setItem(
-    "produtos",
-    JSON.stringify(produtos)
-  );
+pedidos = await listar("pedidos");
+produtos = await listar("produtos");
 
   document.getElementById(
     "cliente"
@@ -257,9 +241,9 @@ function registrarPedido() {
   document.getElementById(
     "quantidadePedido"
   ).value = "";
-
+  
+  carregarProdutosPedido();
   atualizarTabelaPedidos();
-
   atualizarResumo();
 
 }
@@ -268,7 +252,7 @@ function registrarPedido() {
    EDITAR PEDIDO
 ========================== */
 
-function editarPedido(index) {
+async function editarPedido(index) {
 
   let pedido =
     pedidos[index];
@@ -355,23 +339,20 @@ function editarPedido(index) {
     valorUnitario *
     novaQuantidade;
 
-  localStorage.setItem(
-    "pedidos",
-    JSON.stringify(pedidos)
-  );
+ await atualizar("pedidos", pedido);
+await atualizar("produtos", produto);
 
-  localStorage.setItem(
-    "produtos",
-    JSON.stringify(produtos)
-  );
+pedidos = await listar("pedidos");
+produtos = await listar("produtos");
 
+
+  carregarProdutosPedido();
   atualizarTabelaPedidos();
-
   atualizarResumo();
 
 }
 
-function alterarPagamento(index){
+async function alterarPagamento(index){
 
   let pedido = pedidos[index];
 
@@ -403,10 +384,9 @@ function alterarPagamento(index){
 
   pedido.valorPago = novoValor;
 
-  localStorage.setItem(
-    "pedidos",
-    JSON.stringify(pedidos)
-  );
+  await atualizar("pedidos", pedido);
+
+pedidos = await listar("pedidos");
 
   atualizarTabelaPedidos();
 
@@ -416,7 +396,7 @@ function alterarPagamento(index){
    EXCLUIR PEDIDO
 ========================== */
 
-function excluirPedido(index) {
+async function excluirPedido(index) {
 
   let confirmar =
     confirm(
@@ -450,25 +430,20 @@ function excluirPedido(index) {
       produto.estoque -
       produto.vendidos;
 
-    localStorage.setItem(
-      "produtos",
-      JSON.stringify(produtos)
-    );
-
   }
 
-  pedidos.splice(
-    index,
-    1
-  );
+await excluir("pedidos", pedido.id);
 
-  localStorage.setItem(
-    "pedidos",
-    JSON.stringify(pedidos)
-  );
+if(produto){
+    await atualizar("produtos", produto);
+}
 
+pedidos = await listar("pedidos");
+produtos = await listar("produtos");
+
+
+  carregarProdutosPedido();
   atualizarTabelaPedidos();
-
   atualizarResumo();
 
 }
@@ -477,7 +452,7 @@ function excluirPedido(index) {
    TABELA
 ========================== */
 
-function atualizarTabelaPedidos() {
+async function atualizarTabelaPedidos() {
 
   let tabela =
     document.getElementById(
@@ -531,17 +506,17 @@ ${pedido.quantidade}
   R$ ${pedido.total.toFixed(2)}
 </td>
 
-<td>
-  R$ ${pedido.valorPago.toFixed(2)}
-</td>
+<td>R$ ${pedido.valorPago.toFixed(2)}</td>
 
 <td>
-  ${pedido.data}
+  <span class="status ${status.cor}">
+    ${status.icone} ${status.texto}
+  </span>
 </td>
 
-        <td>
+<td>${pedido.data}</td>
 
-          <span class="status ${status.cor}">
+        
 
            ${status.icone}
            ${status.texto}
@@ -589,7 +564,7 @@ Excluir
    RESUMO
 ========================== */
 
-function atualizarResumo() {
+async function atualizarResumo() {
 
   let totalPedidos =
     pedidos.length;
@@ -633,8 +608,18 @@ function atualizarResumo() {
    INICIAR SISTEMA
 ========================== */
 
-carregarProdutosPedido();
+document.addEventListener("DOMContentLoaded", async () => {
 
-atualizarTabelaPedidos();
+    await abrirBanco();
 
-atualizarResumo();
+    pedidos = await listar("pedidos");
+
+    produtos = await listar("produtos");
+
+    carregarProdutosPedido();
+
+    atualizarTabelaPedidos();
+
+    atualizarResumo();
+
+});
