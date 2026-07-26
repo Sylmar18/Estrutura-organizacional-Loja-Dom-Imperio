@@ -184,7 +184,6 @@ async function registrarPedido() {
     produtoId:
       produto.id,
 
-    cliente,
 
     produto:
       produto.nome,
@@ -219,8 +218,39 @@ async function registrarPedido() {
 
   };
 
+  
+  
 
  await adicionar("pedidos", pedido);
+
+ // =======================
+// REGISTRO NO HISTÓRICO
+// =======================
+
+const agora = new Date();
+
+const registro = {
+
+    movimento: "Venda",
+
+    produto: produto.nome,
+
+    quantidade: quantidade,
+
+    total: total,
+
+    totalDespesa: 0,
+
+    data: agora.toLocaleDateString("pt-BR"),
+
+    mes: agora.toLocaleDateString("pt-BR", {
+        month: "long",
+        year: "numeric"
+    })
+
+};
+
+await adicionar("historico", registro);
 
 produto.vendidos += quantidade;
 produto.restante = produto.estoque - produto.vendidos;
@@ -229,6 +259,8 @@ await atualizar("produtos", produto);
 
 pedidos = await listar("pedidos");
 produtos = await listar("produtos");
+
+
 
   document.getElementById(
     "cliente"
@@ -342,6 +374,29 @@ async function editarPedido(index) {
  await atualizar("pedidos", pedido);
 await atualizar("produtos", produto);
 
+const agora = new Date();
+
+await adicionar("historico", {
+
+    movimento: "Alteração",
+
+    produto: produto.nome,
+
+    quantidade: diferenca,
+
+    total: pedido.total,
+
+    totalDespesa: 0,
+
+    data: agora.toLocaleDateString("pt-BR"),
+
+    mes: agora.toLocaleDateString("pt-BR",{
+        month:"long",
+        year:"numeric"
+    })
+
+});
+
 pedidos = await listar("pedidos");
 produtos = await listar("produtos");
 
@@ -389,6 +444,7 @@ async function alterarPagamento(index){
 pedidos = await listar("pedidos");
 
   atualizarTabelaPedidos();
+  atualizarResumo();
 
 }
 
@@ -434,6 +490,29 @@ async function excluirPedido(index) {
 
 await excluir("pedidos", pedido.id);
 
+const agora = new Date();
+
+await adicionar("historico",{
+
+    movimento:"Exclusão",
+
+    produto:pedido.produto,
+
+    quantidade:pedido.quantidade,
+
+    total:pedido.total,
+
+    totalDespesa:0,
+
+    data:agora.toLocaleDateString("pt-BR"),
+
+    mes:agora.toLocaleDateString("pt-BR",{
+        month:"long",
+        year:"numeric"
+    })
+
+});
+
 if(produto){
     await atualizar("produtos", produto);
 }
@@ -468,70 +547,56 @@ async function atualizarTabelaPedidos() {
 
       tabela.innerHTML += `
 
-        <tr>
+<tr>
 
-          <td>
-            ${pedido.cliente}
-          </td>
-
-          <td>
-
-            ${pedido.produto}
-
-            <br>
-
-            <small>
-
-              ${pedido.cor}
-              |
-              ${pedido.tamanho}
-              |
-              ${pedido.genero}
-              |
-              ${pedido.detalheManga}
-
-            </small>
-
-            </td>
-
-            <td>
-${pedido.quantidade}
-</td>
-
- <td>           
-  ${pedido.pagamento}
-</td>
+<td>${pedido.cliente}</td>
 
 <td>
-  R$ ${pedido.total.toFixed(2)}
+
+${pedido.produto}
+
+<br>
+
+<small>
+
+${pedido.cor}
+|
+${pedido.tamanho}
+|
+${pedido.genero}
+|
+${pedido.detalheManga}
+
+</small>
+
 </td>
+
+<td>${pedido.quantidade}</td>
+
+<td>${pedido.pagamento}</td>
+
+<td>R$ ${pedido.total.toFixed(2)}</td>
 
 <td>R$ ${pedido.valorPago.toFixed(2)}</td>
 
 <td>
-  <span class="status ${status.cor}">
-    ${status.icone} ${status.texto}
-  </span>
+
+<span class="status ${status.cor}">
+
+${status.icone} ${status.texto}
+
+</span>
+
 </td>
 
 <td>${pedido.data}</td>
 
-        
+<td>
 
-           ${status.icone}
-           ${status.texto}
-
-           </span>
-
-           </td>
-
-
-          <td>
-
-          <button
+<button
 class="btn editar"
 onclick="editarPedido(${index})">
-Quantiddade
+Quantidade
 </button>
 
 <button
@@ -546,13 +611,11 @@ onclick="excluirPedido(${index})">
 Excluir
 </button>
 
-  
+</td>
 
-          </td>
+</tr>
 
-        </tr>
-
-      `;
+`;
 
     }
   );

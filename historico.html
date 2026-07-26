@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Histórico</title>
+
+    <link
+        rel="stylesheet"
+        href="assets/css/style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- LOGO CENTRAL -->
+
+    <div class="logo-central">
+
+        <img
+            src="assets/img/logo.jpeg"
+            alt="Logo">
+
+    </div>
+
+    <div class="layout">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+
+                <img
+                    src="assets/img/logo.jpeg"
+                    alt="Logo">
+
+                <div>
+
+                    <h2>Dom Império</h2>
+
+                    <span>DRY FIT</span>
+
+                </div>
+
+            </div>
+
+            <nav class="menu">
+
+                <a href="menu.html">
+                    <i class="fa-solid fa-chart-line"></i>
+                    Menu
+                </a>
+
+                <a href="produtos.html">
+                    <i class="fa-solid fa-box"></i>
+                    Produtos
+                </a>
+
+                <a href="clientes.html">
+                    <i class="fa-solid fa-users"></i>
+                    Clientes
+                </a>
+
+                <a href="pedidos.html">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    Pedidos
+                </a>
+
+                <a href="despesas.html">
+                    <i class="fa-solid fa-money-bill-wave"></i>
+                    Despesas
+                </a>
+
+                <a
+                    href="historico.html"
+                    class="active">
+
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+
+                    Histórico
+
+                </a>
+
+            </nav>
+
+        </aside>
+
+        <!-- CONTEÚDO -->
+
+        <main class="content">
+
+            <!-- TOPO -->
+
+            <header class="topbar">
+
+                <div>
+
+                    <h1>Histórico</h1>
+
+                    <p>
+                        Relatório completo das movimentações da empresa
+                    </p>
+
+                </div>
+
+            </header>
+
+            <!-- FILTRO -->
+
+            <section class="filtros">
+
+                <select id="filtroMes">
+
+                    <option value="">
+                        Todos os meses
+                    </option>
+
+                </select>
+
+            </section>
+
+            <!-- CARDS -->
+
+            <section class="cards-historico">
+
+                <div class="card-mini">
+
+                    <h3 id="produtosVendidos">
+                        0
+                    </h3>
+
+                    <p>
+                        Produtos Vendidos
+                    </p>
+
+                </div>
+
+                <div class="card-mini">
+
+                    <h3 id="totalDespesas">
+                        R$ 0,00
+                    </h3>
+
+                    <p>
+                        Total de Despesas
+                    </p>
+
+                </div>
+
+                <div class="card-mini">
+
+                    <h3 id="movimentacoes">
+                        0
+                    </h3>
+
+                    <p>
+                        Movimentações
+                    </p>
+
+                </div>
+
+                <div class="card-mini">
+
+                    <h3 id="lucroMes">
+                        R$ 0,00
+                    </h3>
+
+                    <p>
+                        Lucro do Mês
+                    </p>
+
+                </div>
+
+            </section>
+
+            <!-- PRODUTOS MAIS VENDIDOS -->
+
+            <section class="tabela-container">
+
+                <h2>
+
+                    <i class="fa-solid fa-ranking-star"></i>
+
+                    Vendas por Produto
+
+                </h2>
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Produto</th>
+
+                            <th>Quantidade Vendida</th>
+
+                            <th>Faturamento</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tabelaProdutosVendidos">
+
+                    </tbody>
+
+                </table>
+
+            </section>
+
+            <!-- HISTÓRICO -->
+
+            <section class="tabela-container">
+
+                <h2>
+
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+
+                    Movimentações
+
+                </h2>
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Data</th>
+
+                            <th>Tipo</th>
+
+                            <th>Movimento</th>
+
+                            <th>Descrição</th>
+
+                            <th>Quantidade</th>
+
+                            <th>Valor</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tabelaHistorico">
+
+                    </tbody>
+
+                </table>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="assets/js/database.js"></script>
+
+    <script src="assets/js/historico.js"></script>
+
+</body>
+
+</html>

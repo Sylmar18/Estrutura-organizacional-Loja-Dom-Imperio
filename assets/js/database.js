@@ -5,7 +5,7 @@
 
 
 const DB_NAME = "DomImperioDB";
-const DB_VERSION = 3;
+const DB_VERSION = 5;
 
 let db = null;
 
@@ -71,6 +71,22 @@ function abrirBanco() {
             }
 
             // ===========================
+// DESPESAS
+// ===========================
+
+if (!db.objectStoreNames.contains("despesas")) {
+
+    const despesas = db.createObjectStore("despesas", {
+        keyPath: "id",
+        autoIncrement: true
+    });
+
+    despesas.createIndex("mes", "mes");
+    despesas.createIndex("dataCadastro", "dataCadastro");
+
+}
+
+            // ===========================
             // PRODUTOS
             // ===========================
 
@@ -109,6 +125,7 @@ function abrirBanco() {
     });
 
 }
+
 
 // ===========================================
 // ADICIONAR

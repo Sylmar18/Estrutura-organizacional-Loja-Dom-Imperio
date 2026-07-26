@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Despesas</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="logo-central">
+
+    <img
+    src="assets/img/logo.jpeg"
+    alt="Logo">
+
+</div>
+
+<div class="layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <img
+            src="assets/img/logo.jpeg"
+            alt="Logo">
+
+            <div>
+
+                <h2>Dom Império</h2>
+                <span>DRY FIT</span>
+
+            </div>
+
+        </div>
+
+        <nav class="menu">
+
+            <a href="menu.html">
+                <i class="fa-solid fa-chart-line"></i>
+                Menu
+            </a>
+
+            <a href="produtos.html">
+                <i class="fa-solid fa-box"></i>
+                Produtos
+            </a>
+
+            <a href="clientes.html">
+                <i class="fa-solid fa-users"></i>
+                Clientes
+            </a>
+
+            <a href="pedidos.html">
+                <i class="fa-solid fa-cart-shopping"></i>
+                Pedidos
+            </a>
+
+            <a
+            href="despesas.html"
+            class="active">
+
+                <i class="fa-solid fa-money-bill-wave"></i>
+
+                Despesas
+
+            </a>
+
+               <a
+                    href="historico.html"
+                    class="active">
+
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+
+                    Histórico
+
+                </a>
+
+        </nav>
+
+    </aside>
+
+    <!-- CONTEÚDO -->
+
+    <main class="content">
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>Controle de Despesas</h1>
+
+                <p>Controle das remessas compradas</p>
+
+            </div>
+
+        </header>
+
+        <!-- FORMULÁRIO -->
+
+        <section class="pedido-form">
+
+            <h2>Nova Remessa</h2>
+
+            <div class="pedido-grid">
+
+    <input
+        type="month"
+        id="mesRemessa">
+
+    <!-- CAMISAS -->
+
+    <input
+        type="number"
+        id="camisas"
+        placeholder="Quantidade de Camisas">
+
+    <input
+        type="number"
+        id="valorCamisas"
+        placeholder="Preço Unitário das Camisas"
+        step="0.01">
+
+    <!-- SHORTS -->
+
+    <input
+        type="number"
+        id="shorts"
+        placeholder="Quantidade de Shorts">
+
+    <input
+        type="number"
+        id="valorShorts"
+        placeholder="Preço Unitário dos Shorts"
+        step="0.01">
+
+    <!-- CONJUNTOS -->
+
+    <input
+        type="number"
+        id="conjuntos"
+        placeholder="Quantidade de Conjuntos">
+
+    <input
+        type="number"
+        id="valorConjuntos"
+        placeholder="Preço Unitário dos Conjuntos"
+        step="0.01">
+
+    <!-- CALÇAS -->
+
+    <input
+        type="number"
+        id="calcas"
+        placeholder="Quantidade de Calças">
+
+    <input
+        type="number"
+        id="valorCalcas"
+        placeholder="Preço Unitário das Calças"
+        step="0.01">
+
+    <!-- BOLSAS -->
+
+    <input
+        type="number"
+        id="bolsas"
+        placeholder="Quantidade de Bolsas">
+
+    <input
+        type="number"
+        id="valorBolsas"
+        placeholder="Preço Unitário das Bolsas"
+        step="0.01">
+
+    <button onclick="cadastrarDespesa()">
+
+        Registrar Remessa
+
+    </button>
+
+</div>
+
+        </section>
+
+        <!-- CARDS -->
+
+        <section class="cards-pedidos">
+
+            <div class="card-mini">
+
+                <h3 id="totalRemessas">
+
+                    0
+
+                </h3>
+
+                <p>Remessas</p>
+
+            </div>
+
+            <div class="card-mini">
+
+                <h3 id="totalPecas">
+
+                    0
+
+                </h3>
+
+                <p>Peças Compradas</p>
+
+            </div>
+
+            <div class="card-mini">
+
+                <h3 id="valorGasto">
+
+                    R$ 0,00
+
+                </h3>
+
+                <p>Total Gasto</p>
+
+            </div>
+
+        </section>
+
+        <!-- TABELA -->
+
+        <section class="tabela-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Mês</th>
+
+                        <th>Camisas</th>
+
+                        <th>Shorts</th>
+
+                        <th>Conjuntos</th>
+
+                        <th>Calças</th>
+
+                        <th>Bolsas</th>
+
+                        <th>Total de Peças</th>
+
+                        <th>Valor Gasto</th>
+
+                        <th>Ações</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="tabelaDespesas">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="assets/js/database.js"></script>
+
+<script src="assets/js/despesas.js"></script>
+
+</body>
+
+</html>

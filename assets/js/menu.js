@@ -1,28 +1,17 @@
-const dataAtual = document.getElementById("dataAtual");
+let produtos = [];
+let clientes = [];
+let pedidos = [];
+let despesas = [];
 
-const hoje = new Date();
+async function atualizarMenu(){
 
-dataAtual.textContent = hoje.toLocaleDateString("pt-BR");
+produtos = await listar("produtos");
 
-let produtos =
-JSON.parse(localStorage.getItem("produtos")) || [];
+clientes = await listar("clientes");
 
-let clientes =
-JSON.parse(localStorage.getItem("clientes")) || [];
+pedidos = await listar("pedidos");
 
-let pedidos =
-JSON.parse(localStorage.getItem("pedidos")) || [];
-
-function atualizarMenu(){
-
-    produtos = 
-    JSON.parse(localStorage.getItem("produtos")) || [];
-
-    clientes =
-    JSON.parse(localStorage.getItem("clientes")) || [];
-
-    pedidos =
-    JSON.parse(localStorage.getItem("pedidos")) || [];
+despesas = await listar("despesas");
 
     // Cards principais
 
@@ -161,22 +150,20 @@ if(cardAtrasados){
 
 }
 
- function abrirPedidos(filtro){
+const dataAtual = document.getElementById("dataAtual");
 
-    localStorage.setItem(
-        "filtroPedidos",
-        filtro
-    );
-
-    window.location.href = "pedidos.html";
-
+if(dataAtual){
+    dataAtual.textContent =
+    new Date().toLocaleDateString("pt-BR");
 }
 
+document.addEventListener("DOMContentLoaded", async () => {
 
-atualizarMenu();
+    await abrirBanco();
 
-window.addEventListener("focus", atualizarMenu);
+    await atualizarMenu();
 
-window.addEventListener("storage", atualizarMenu);
+    window.addEventListener("focus", atualizarMenu);
 
-setInterval(atualizarMenu, 5000);
+
+});
