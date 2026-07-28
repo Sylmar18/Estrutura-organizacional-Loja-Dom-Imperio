@@ -101,7 +101,7 @@ function atualizarResumo(lista){
 
     });
 
-    document.getElementById("totalVendas")
+    document.getElementById("produtosVendidos")
     .textContent = vendas;
 
     document.getElementById("totalDespesas")
@@ -109,24 +109,28 @@ function atualizarResumo(lista){
     "R$ " + despesas.toFixed(2);
 
     const listaProdutos =
-    document.getElementById("vendasProdutos");
+    document.getElementById("tabelaProdutosVendidos");
 
     listaProdutos.innerHTML = "";
 
-    for(let nome in produtos){
+   
 
-        listaProdutos.innerHTML += `
-            <li>
-                ${nome}
-                <strong>
-                    ${produtos[nome]}
-                </strong>
-            </li>
-        `;
+listaProdutos.innerHTML = "";
 
-    }
+for (let nome in produtos) {
+
+    listaProdutos.innerHTML += `
+    <tr>
+        <td>${nome}</td>
+        <td>${produtos[nome]}</td>
+        <td>--</td>
+    </tr>
+    `;
 
 }
+}
+
+
 
 // ======================================
 // TABELA
@@ -147,15 +151,15 @@ function atualizarTabela(lista){
 
             <td>${item.data}</td>
 
-            <td>${item.mes}</td>
+            <td>${item.movimento === "Despesa" ? "Despesa" : "Venda"}</td>
+
+            <td>${item.movimento}</td>
 
             <td>${item.produto}</td>
 
             <td>${item.quantidade}</td>
 
-            <td>R$ ${item.total.toFixed(2)}</td>
-
-            <td>R$ ${(item.totalDespesa || 0).toFixed(2)}</td>
+            <td>R$ ${(item.total || item.totalDespesa || 0).toFixed(2)}</td>
 
         </tr>
 

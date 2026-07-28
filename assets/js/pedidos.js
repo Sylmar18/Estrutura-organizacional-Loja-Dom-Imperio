@@ -252,6 +252,9 @@ const registro = {
 
 await adicionar("historico", registro);
 
+const teste = await listar("historico");
+console.table(teste);
+
 produto.vendidos += quantidade;
 produto.restante = produto.estoque - produto.vendidos;
 
