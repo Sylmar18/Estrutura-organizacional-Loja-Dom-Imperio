@@ -32,48 +32,71 @@ async function cadastrarDespesa() {
 
     // Totais por produto
 
-    const despesa = {
+   
+    // Totais
+
+const totalCamisas = camisas * valorCamisas;
+const totalShorts = shorts * valorShorts;
+const totalConjuntos = conjuntos * valorConjuntos;
+const totalCalcas = calcas * valorCalcas;
+const totalBolsas = bolsas * valorBolsas;
+
+const totalPecas =
+    camisas +
+    shorts +
+    conjuntos +
+    calcas +
+    bolsas;
+
+const totalGasto =
+    totalCamisas +
+    totalShorts +
+    totalConjuntos +
+    totalCalcas +
+    totalBolsas;
+
+const custoMedio =
+    totalPecas > 0
+        ? totalGasto / totalPecas
+        : 0;
+
+
+// OBJETO
+
+const despesa = {
 
     mes,
 
     camisas,
     valorCamisas,
+    totalCamisas,
 
     shorts,
     valorShorts,
+    totalShorts,
 
     conjuntos,
     valorConjuntos,
+    totalConjuntos,
 
     calcas,
     valorCalcas,
+    totalCalcas,
 
     bolsas,
     valorBolsas,
+    totalBolsas,
 
-    totalGasto: 0,
+    totalPecas,
 
-    dataCadastro: new Date().toLocaleString()
+    custoMedio,
+
+    totalGasto,
+
+    dataCadastro:
+        new Date().toLocaleString()
 
 };
-
-    const totalCamisas = camisas * valorCamisas;
-    const totalShorts = shorts * valorShorts;
-    const totalConjuntos = conjuntos * valorConjuntos;
-    const totalCalcas = calcas * valorCalcas;
-    const totalBolsas = bolsas * valorBolsas;
-
-  
-    despesa.totalGasto =
-
-    (despesa.camisas * despesa.valorCamisas) +
-    (despesa.shorts * despesa.valorShorts) +
-    (despesa.conjuntos * despesa.valorConjuntos) +
-    (despesa.calcas * despesa.valorCalcas) +
-    (despesa.bolsas * despesa.valorBolsas);
-
-
-
 
 
     await adicionar("despesas", despesa);
@@ -145,14 +168,15 @@ function limparFormulario() {
 // TABELA
 // ==============================
 
-function atualizarTabela() {
+
+function atualizarTabela(){
 
     const tabela =
-        document.getElementById("tabelaDespesas");
+    document.getElementById("tabelaDespesas");
 
     tabela.innerHTML = "";
 
-    despesas.forEach((despesa, index) => {
+    despesas.forEach((despesa,index)=>{
 
         tabela.innerHTML += `
 
@@ -160,41 +184,30 @@ function atualizarTabela() {
 
             <td>${despesa.mes}</td>
 
-            <td>${despesa.camisas}</td>
+            <td>${despesa.totalPecas || 0}</td>
 
+            <td>R$ ${(despesa.totalGasto || 0).toFixed(2)}</td>
 
-            <td>${despesa.camisas} × R$ ${despesa.valorCamisas.toFixed(2)}</td>
-
-            <td>${despesa.shorts}</td>
-
-            <td>R$ ${despesa.shorts} × R$ ${despesa.valorShorts.toFixed(2)}</td>
-
-            <td>${despesa.conjuntos}</td>
-
-            <td>R$ ${despesa.conjuntos} × R$ ${despesa.valorConjuntos.toFixed(2)}</td>
-
-            <td>${despesa.calcas}</td>
-
-            <td>R$ ${despesa.calcas} × R$ ${despesa.valorCalcas.toFixed(2)}</td>
-
-            <td>${despesa.bolsas}</td>
-
-            <td>R$ ${despesa.bolsas} × R$ ${despesa.valorBolsas.toFixed(2)}</td>
-
-            <td><strong>R$ ${despesa.totalGasto.toFixed(2)}</strong></td>
+            <td>R$ ${(despesa.custoMedio || 0).toFixed(2)}</td>
 
             <td>
 
                 <button
-                    class="btn editar"
-                    onclick="editarDespesa(${index})">
-                    Editar
+                class="btn detalhes"
+                onclick="verDetalhes(${index})">
+                    <i class="fa-solid fa-eye"></i>
                 </button>
 
                 <button
-                    class="btn excluir"
-                    onclick="excluirDespesa(${index})">
-                    Excluir
+                class="btn editar"
+                onclick="editarDespesa(${index})">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+
+                <button
+                class="btn excluir"
+                onclick="excluirDespesa(${index})">
+                    <i class="fa-solid fa-trash"></i>
                 </button>
 
             </td>
@@ -206,7 +219,6 @@ function atualizarTabela() {
     });
 
 }
-
 // ==============================
 // EDITAR
 // ==============================
@@ -287,6 +299,133 @@ function atualizarResumo() {
 
         elemento.textContent =
         "R$ " + total.toFixed(2);
+
+    }
+
+}
+
+function verDetalhes(index){
+
+    const d = despesas[index];
+
+    document.getElementById("conteudoModal").innerHTML = `
+
+<h3>${d.mes}</h3>
+
+<table class="tabela-detalhes">
+
+<tr>
+
+<th>Produto</th>
+
+<th>Quantidade</th>
+
+<th>Valor Pago</th>
+
+</tr>
+
+<tr>
+
+<td>👕 Camisas</td>
+
+<td>${d.camisas}</td>
+
+<td>R$ ${(d.totalCamisas || 0).toFixed(2)}</td>
+
+</tr>
+
+<tr>
+
+<td>🩳 Shorts</td>
+
+<td>${d.shorts}</td>
+
+<td>R$ ${(d.totalShorts || 0).toFixed(2)}</td>
+
+</tr>
+
+<tr>
+
+<td>👔 Conjuntos</td>
+
+<td>${d.conjuntos}</td>
+
+<td>R$ ${(d.totalConjuntos || 0).toFixed(2)}</td>
+
+</tr>
+
+<tr>
+
+<td>👖 Calças</td>
+
+<td>${d.calcas}</td>
+
+<td>R$ ${(d.totalCalcas || 0).toFixed(2)}</td>
+
+</tr>
+
+<tr>
+
+<td>🎒 Bolsas</td>
+
+<td>${d.bolsas}</td>
+
+<td>R$ ${(d.totalBolsas || 0).toFixed(2)}</td>
+
+</tr>
+
+</table>
+
+<hr>
+
+<div class="resumo-remessa">
+
+<p>
+
+<strong>Total de peças:</strong>
+
+${d.totalPecas || 0}
+
+</p>
+
+<p>
+
+<strong>Total Investido:</strong>
+
+R$ ${(d.totalGasto || 0).toFixed(2)}
+
+</p>
+
+<p>
+
+<strong>Custo Médio:</strong>
+
+R$ ${(d.custoMedio || 0).toFixed(2)}
+
+</p>
+
+</div>
+
+`;
+
+    document.getElementById("modalDetalhes").style.display = "flex";
+
+}
+
+function fecharModal(){
+
+    document.getElementById("modalDetalhes").style.display = "none";
+
+}
+
+window.onclick = function(event){
+
+    const modal =
+    document.getElementById("modalDetalhes");
+
+    if(event.target === modal){
+
+        modal.style.display = "none";
 
     }
 

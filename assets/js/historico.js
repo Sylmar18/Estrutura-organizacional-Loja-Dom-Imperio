@@ -79,57 +79,75 @@ function atualizarHistorico() {
 function atualizarResumo(lista){
 
     let vendas = 0;
-
+    let valorVendas = 0;
     let despesas = 0;
 
     const produtos = {};
 
-    lista.forEach(item=>{
+    lista.forEach(item => {
 
-        vendas += item.quantidade || 0;
+        if(item.movimento === "Venda"){
 
-        despesas += item.totalDespesa || 0;
-
-        if(!produtos[item.produto]){
-
-            produtos[item.produto] = 0;
+            vendas += item.quantidade || 0;
+            valorVendas += item.total || 0;
 
         }
 
-        produtos[item.produto] +=
-        item.quantidade;
+        if(item.movimento === "Despesa"){
+
+            despesas += item.totalDespesa || 0;
+
+        }
+
+        if(!produtos[item.produto]){
+
+            produtos[item.produto] = {
+                quantidade:0,
+                faturamento:0
+            };
+
+        }
+
+        produtos[item.produto].quantidade += item.quantidade || 0;
+        produtos[item.produto].faturamento += item.total || 0;
 
     });
 
-    document.getElementById("produtosVendidos")
-    .textContent = vendas;
+    document.getElementById("produtosVendidos").textContent = vendas;
 
-    document.getElementById("totalDespesas")
-    .textContent =
-    "R$ " + despesas.toFixed(2);
+    document.getElementById("totalDespesas").textContent =
+        "R$ " + despesas.toFixed(2);
 
-    const listaProdutos =
-    document.getElementById("tabelaProdutosVendidos");
+    document.getElementById("movimentacoes").textContent =
+        lista.length;
 
-    listaProdutos.innerHTML = "";
+    document.getElementById("lucroMes").textContent =
+        "R$ " + (valorVendas - despesas).toFixed(2);
 
-   
+    const tabelaProdutos =
+        document.getElementById("tabelaProdutosVendidos");
 
-listaProdutos.innerHTML = "";
+    tabelaProdutos.innerHTML = "";
 
-for (let nome in produtos) {
+    for(let nome in produtos){
 
-    listaProdutos.innerHTML += `
-    <tr>
-        <td>${nome}</td>
-        <td>${produtos[nome]}</td>
-        <td>--</td>
-    </tr>
-    `;
+        tabelaProdutos.innerHTML += `
+            <tr>
+
+                <td>${nome}</td>
+
+                <td>${produtos[nome].quantidade}</td>
+
+                <td>
+                    R$ ${produtos[nome].faturamento.toFixed(2)}
+                </td>
+
+            </tr>
+        `;
+
+    }
 
 }
-}
-
 
 
 // ======================================

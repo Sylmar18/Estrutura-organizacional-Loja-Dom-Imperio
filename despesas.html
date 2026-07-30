@@ -243,31 +243,28 @@
 
             <table>
 
-                <thead>
+               <thead>
 
-                    <tr>
+                 <tr>
 
-                        <th>Mês</th>
+                 <th>Mês</th>
 
-                        <th>Camisas</th>
+                 <th>Total de Peças</th>
 
-                        <th>Shorts</th>
+                 <th>Valor Pago</th>
 
-                        <th>Conjuntos</th>
+                 <th>Custo Médio</th>
 
-                        <th>Calças</th>
+                 <th>Ações</th>
 
-                        <th>Bolsas</th>
+                 </tr>
 
-                        <th>Total de Peças</th>
+                 </thead>
 
-                        <th>Valor Gasto</th>
+                  <tbody id="tabelaDespesas">
 
-                        <th>Ações</th>
+                   </tbody>
 
-                    </tr>
-
-                </thead>
 
                 <tbody id="tabelaDespesas">
 
@@ -278,6 +275,33 @@
         </section>
 
     </main>
+
+</div>
+
+<!-- MODAL DETALHES DA REMESSA -->
+
+<div id="modalDetalhes" class="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>
+                <i class="fa-solid fa-boxes-stacked"></i>
+                Detalhes da Remessa
+            </h2>
+
+            <button class="fechar" onclick="fecharModal()">
+                &times;
+            </button>
+
+        </div>
+
+        <div id="conteudoModal">
+
+        </div>
+
+    </div>
 
 </div>
 
