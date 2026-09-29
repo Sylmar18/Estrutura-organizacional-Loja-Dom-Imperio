@@ -5,25 +5,14 @@
 
   <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Dashboard | Dom Império</title>
 
-  <link
-    rel="stylesheet"
-    href="assets/css/style.css"
-  >
+  <link rel="stylesheet" href="assets/css/style.css">
 
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-  >
-  <link
-href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 </head>
 
@@ -33,10 +22,7 @@ rel="stylesheet">
 
   <div class="logo-central">
 
-    <img
-      src="assets/img/logo.jpeg"
-      alt="Logo Central"
-    >
+    <img src="assets/img/logo.jpeg" alt="Logo Central">
 
   </div>
 
@@ -49,10 +35,7 @@ rel="stylesheet">
 
       <div class="logo">
 
-        <img
-          src="assets/img/logo.jpeg"
-          alt="Logo Dom Império"
-        >
+        <img src="assets/img/logo.jpeg" alt="Logo Dom Império">
 
         <div class="logo-texto">
 
@@ -97,6 +80,7 @@ rel="stylesheet">
         <span id="menuPedidos" class="menu-badge">0</span>
     </a>
 
+<<<<<<<< HEAD:menu.html
         <a
             href="despesas.html"
             class="active">
@@ -112,13 +96,62 @@ rel="stylesheet">
                     class="active">
 
                     <i class="fa-solid fa-clock-rotate-left"></i>
+========
+        <a href="menu-TheGodfather.html" class="active">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>Menu</span>
+        </a>
+
+        <a href="produtos-TheGodfather.html">
+          <i class="fa-solid fa-box"></i>
+>>>>>>>> 30ad761 (Corrigindo duplicações inesperadas, Melhorando o style do gráfico de produtos, melhorando a estrutura de cadastro da aba pedidos.):menu-TheGodfather.html
 
                     Histórico
 
+<<<<<<<< HEAD:menu.html
                 </a>
     
 
 </nav>
+========
+          <span id="menuProdutos" class="menu-badge">0</span>
+        </a>
+
+        <a href="clientes-TheGodfather.html">
+          <i class="fa-solid fa-users"></i>
+
+          <span>Clientes</span>
+
+          <span id="menuClientes" class="menu-badge">0</span>
+        </a>
+
+        <a href="pedidos.html">
+          <i class="fa-solid fa-cart-shopping"></i>
+
+          <span>Pedidos</span>
+
+          <span id="menuPedidos" class="menu-badge">0</span>
+        </a>
+
+        <a href="despesas.html" class="active">
+
+          <i class="fa-solid fa-money-bill-wave"></i>
+
+          Despesas
+
+        </a>
+
+        <a href="historico.html" class="active">
+
+          <i class="fa-solid fa-clock-rotate-left"></i>
+
+          Histórico
+
+        </a>
+
+
+      </nav>
+>>>>>>>> 30ad761 (Corrigindo duplicações inesperadas, Melhorando o style do gráfico de produtos, melhorando a estrutura de cadastro da aba pedidos.):menu-TheGodfather.html
 
       <!-- FOOTER SIDEBAR -->
 
@@ -133,7 +166,7 @@ rel="stylesheet">
           <p>Excelência em cada detalhe.</p>
 
         </div>
-         <div>
+        <div>
 
           <h5>Familia</h5>
 
@@ -240,8 +273,8 @@ rel="stylesheet">
           </div>
 
         </div>
-        
-         <div class="card-info">
+
+        <div class="card-info">
 
           <div class="icon-box">
 
@@ -255,13 +288,18 @@ rel="stylesheet">
 
             <p>pedidos</p>
 
+<<<<<<<< HEAD:menu.html
             
+========
+
+>>>>>>>> 30ad761 (Corrigindo duplicações inesperadas, Melhorando o style do gráfico de produtos, melhorando a estrutura de cadastro da aba pedidos.):menu-TheGodfather.html
 
           </div>
 
         </div>
 
         <div class="card-info">
+<<<<<<<< HEAD:menu.html
 
         <div class="icon-box">
 
@@ -352,24 +390,111 @@ rel="stylesheet">
     </div>
 </section>
 
+========
+>>>>>>>> 30ad761 (Corrigindo duplicações inesperadas, Melhorando o style do gráfico de produtos, melhorando a estrutura de cadastro da aba pedidos.):menu-TheGodfather.html
 
-      <!-- FOOTER CENTRAL -->
+          <div class="icon-box">
 
-    <footer class="footer-dashboard">
+            <i class="fa-solid fa-circle-check"></i>
 
-  <span>
-    <i class="fa-solid fa-crown"></i>
-    A Força e Sutileza de um Guerreiro..
-  </span>
+          </div>
+
+          <div class="card-texto">
+
+            <h3 id="recebido">
+              R$ 0
+            </h3>
+
+            <p>Recebido</p>
+
+          </div>
+
+        </div>
+
+        <!-- FATURAMENTO -->
+
+        <div class="card-info">
+
+          <div class="icon-box">
+
+            <i class="fa-solid fa-chart-column"></i>
+
+          </div>
+
+          <div class="card-texto">
+
+            <h3 id="faturamento">
+              R$ 0
+            </h3>
+
+            <p>Faturamento</p>
+
+          </div>
+
+        </div>
 
 
-</footer>
+
+        <section class="status-dashboard">
+
+          <div class="status-card pago" onclick="abrirPedidos('pagos')">
+
+            <h2 id="pagos">0</h2>
+
+            <p>🟢 Pagos</p>
+
+          </div>
+
+          <div class="status-card parcial" onclick="abrirPedidos('parciais')">
+
+            <h2 id="parciais">0</h2>
+
+            <p>🟠 Pagamento Parcial</p>
+
+          </div>
+
+          <div class="status-card prazo" onclick="abrirPedidos('prazo')">
+
+            <h2 id="prazo">0</h2>
+
+            <p>🔵 No Prazo</p>
+
+          </div>
+
+          <div class="status-card atrasado" onclick="abrirPedidos('atrasados')">
+
+            <h2 id="atrasados">0</h2>
+
+            <p>🔴 Atrasado</p>
+
+          </div>
+        </section>
+
+
+
+
+        <!-- FOOTER CENTRAL -->
+
+        <footer class="footer-dashboard">
+
+          <span>
+            <i class="fa-solid fa-crown"></i>
+            A Força e Sutileza de um Guerreiro..
+          </span>
+
+
+        </footer>
 
     </main>
 
   </div>
+<<<<<<<< HEAD:menu.html
   
   
+========
+
+
+>>>>>>>> 30ad761 (Corrigindo duplicações inesperadas, Melhorando o style do gráfico de produtos, melhorando a estrutura de cadastro da aba pedidos.):menu-TheGodfather.html
   <!-- DATA AUTOMÁTICA -->
 
   <script>
@@ -381,10 +506,17 @@ rel="stylesheet">
 
   </script>
 
+<<<<<<<< HEAD:menu.html
     <!-- SCRIPTS -->
 
 <script src="assets/js/database.js"></script>
 <script src="assets/js/menu.js"></script>
+========
+  <!-- SCRIPTS -->
+
+  <script src="assets/js/database.js"></script>
+  <script src="assets/js/menu.js"></script>
+>>>>>>>> 30ad761 (Corrigindo duplicações inesperadas, Melhorando o style do gráfico de produtos, melhorando a estrutura de cadastro da aba pedidos.):menu-TheGodfather.html
 
 </body>
 

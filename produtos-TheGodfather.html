@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>produtos</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+  <div class="logo-central">
+
+    <img src="assets/img/logo.jpeg" alt="">
+  </div>
+
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+      <div class="logo">
+
+        <img src="assets/img/logo.jpeg" alt="">
+
+        <div>
+
+          <h2>Dom Império</h2>
+
+          <span>DRY FIT</span>
+
+        </div>
+
+      </div>
+
+      <!-- MENU -->
+
+      <nav class="menu">
+
+        <a href="menu-TheGodfather.html">
+
+          <i class="fa-solid fa-chart-line"></i>
+
+          Menu
+
+        </a>
+
+        <a href="produtos-TheGodfather.html" class="active">
+          <i class="fa-solid fa-box"></i>
+
+          Produtos
+
+        </a>
+
+        <a href="clientes-TheGodfather.html">
+          <i class="fa-solid fa-users"></i>
+
+          Clientes
+
+        </a>
+
+        <a href="pedidos.html">
+          <i class="fa-solid fa-users"></i>
+
+          Pedidos
+
+        </a>
+
+        <a href="despesas.html" class="active">
+
+          <i class="fa-solid fa-money-bill-wave"></i>
+
+          Despesas
+
+        </a>
+
+        <a href="historico.html" class="active">
+
+          <i class="fa-solid fa-clock-rotate-left"></i>
+
+          Histórico
+
+        </a>
+
+      </nav>
+
+    </aside>
+
+    <main class="content">
+
+      <!-- TOPO -->
+
+      <header class="topbar">
+
+        <div>
+
+          <h1>Produtos</h1>
+
+          <p>
+            controle completo do estoque
+          </p>
+        </div>
+
+
+      </header>
+
+      <div class="painel-produtos">
+
+
+        <section class="filtros">
+          <input type="text" id="busca" placeholder="buscar produto">
+
+          <select id="filtroCor">
+            <option value="">
+              Todas as cores
+            </option>
+
+            <option>Preto</option>
+            <option>Branco</option>
+            <option>Azul Royal</option>
+            <option>Azul Claro</option>
+            <option>Azul</option>
+            <option>Vermelho</option>
+            <option>Vermelho Chumbo</option>
+            <option>Verde</option>
+            <option>Roxo</option>
+            <option>Rosa</option>
+            <option>Amarelo</option>
+            <option>Cinza Escuro</option>
+            <option>Cinza Claro</option>
+            <option>Preto/Branco</option>
+            <option>Branco/Preto</option>
+            <option></option>
+
+
+          </select>
+
+          <select id="filtroTamanho">
+
+            <option value="">
+              Todos tamanhos
+            </option>
+
+            <option>P</option>
+            <option>M</option>
+            <option>G</option>
+            <option>GG</option>
+            <option>G2</option>
+            <option>G3</option>
+            <option>Infantil</option>
+
+          </select>
+
+
+          <select id="filtroGenero">
+
+            <option value="">
+              Todos os gêneros
+            </option>
+            <option value="Masculino">👨 Masculino</option>
+            <option value="Feminino">👩 Feminino</option>
+            <option value="Unissex">🧑 Unissex</option>
+
+
+          </select>
+      </div>
+
+      <!-- FORMULÁRIO -->
+
+      <section class="formulario">
+
+        <input type="text" id="nome" placeholder="Nome do produto">
+
+        <input type="text" id="cor" placeholder="Cor">
+
+        <input type="text" id="tamanho" placeholder="Tamanho">
+
+        <div class="campo-preco">
+
+          <span>R$</span>
+
+          <input type="number" id="preco" placeholder="0,00">
+
+        </div>
+
+
+
+        <select id="marca">
+
+          <option value="Dom Império">
+            Dom Império
+          </option>
+
+          <option value="Nike">
+            Nike
+          </option>
+
+          <option value="Adidas">
+            Adidas
+          </option>
+
+          <option value="Air">
+            Air
+          </option>
+
+          <option value="Puma">
+            Puma
+          </option>
+
+          <option value="São Paulo">
+            São Paulo
+          </option>
+
+          <option value="Flamengo">
+            Flamengo
+          </option>
+
+          <option value="Palmeiras">
+            Palmeiras
+          </option>
+
+          <option value="Argentina">
+            Argentina
+          </option>
+
+          <option value="Santa Cruz">
+            Santa Cruz
+          </option>
+
+          <option value="Sport">
+            Sport
+          </option>
+
+          <option value="Corinthians">
+            Corinthians
+          </option>
+
+        </select>
+
+
+        <select id="tipo">
+
+          <option value="Camisa simples">
+            Camisa simples
+          </option>
+
+          <option value="Camisa 2Cores">
+            Camisa 2Cores
+          </option>
+
+          <option value="Regata simples">
+            Regata
+          </option>
+
+          <option value="regata 2Cores">
+            Regata 2Cores
+          </option>
+
+          <option value="Short simples">
+            Short simples
+          </option>
+
+          <option value="Short duplo">
+            Short duplo
+          </option>
+
+          <option value="Conjunto">
+            Conjunto
+          </option>
+
+          <option value="Conjunto 2Cores">
+            Conjunto 2Cores
+          </option>
+
+        </select>
+
+        <select id="genero">
+
+          <option value="Masculino">
+            👨 Masculino
+          </option>
+
+          <option value="Feminino">
+            👩 Feminino
+          </option>
+
+          <option value="Unissex">
+            🧑 Unissex
+          </option>
+
+        </select>
+
+        <select id="detalheManga">
+          <option value="✨Com Detalhes">
+            ✨Com Detalhes
+
+          </option>
+          <option value="🚫Sem Detalhes">
+            🚫Sem Detalhes
+
+          </option>
+        </select>
+
+
+        <input type="number" id="estoque" placeholder="Quantidade em estoque">
+
+        <input type="number" id="vendidos" placeholder="Quantidade vendida">
+
+        <button onclick="cadastrarProduto()">
+
+          Cadastrar Produto
+
+        </button>
+
+      </section>
+
+      <!-- GRÁFICO -->
+      <div class="grafico-box">
+        <canvas id="graficoVendas"></canvas>
+      </div>
+
+      <!-- TABELA -->
+
+      <section class="tabela-container">
+
+        <table>
+
+          <thead>
+
+            <tr>
+
+              <th>Produto</th>
+              <th>Marca</th>
+              <th>Cor</th>
+              <th>Tamanho</th>
+              <th>Preço</th>
+              <th>Tipo</th>
+              <th>Gênero</th>
+              <th>Detalhes</th>
+              <th>Estoque</th>
+              <th>Vendidos</th>
+              <th>Restante</th>
+              <th>Ações</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody id="tabelaProdutos"></tbody>
+
+        </table>
+
+      </section>
+
+      <!-- HISTÓRICO -->
+
+      <section class="historico">
+
+        <h2>Histórico de Movimentações</h2>
+
+        <table>
+
+          <thead>
+
+            <tr>
+
+              <th>Produto</th>
+              <th>Movimento</th>
+              <th>Quantidade</th>
+              <th>Data</th>
+
+            </tr>
+
+          </thead>
+          <tbody id="historicoTabela"></tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <script src="assets/js/database.js"></script>
+  <script src="assets/js/produtos.js"></script>
+
+
+
+</body>
+
+</html>

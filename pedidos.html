@@ -1,43 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-   <title>Pedidos</title>
+  <title>Pedidos</title>
 
-<link
-  rel="stylesheet"
-  href="assets/css/style.css"
->
+  <link rel="stylesheet" href="assets/css/style.css">
 
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+
+<body>
 
   <div class="logo-central">
 
-    <img
-      src="assets/img/logo.jpeg"
-      alt=""
-    >
-     </div>
+    <img src="assets/img/logo.jpeg" alt="">
+  </div>
 
-<body>
-    
 
- <div class="layout">
+  <div class="layout">
 
-  <aside class="sidebar">
+    <aside class="sidebar">
 
-         <div class="logo">
+      <div class="logo">
 
-        <img
-          src="assets/img/logo.jpeg"
-          alt=""
-        >
+        <img src="assets/img/logo.jpeg" alt="">
 
         <div>
 
@@ -53,187 +42,166 @@
 
       <nav class="menu">
 
-        <a href="menu.html">
-  <i class="fa-solid fa-chart-line"></i>
-  Menu
-</a>
+        <a href="menu-TheGodfather.html">
+          <i class="fa-solid fa-chart-line"></i>
+          Menu
+        </a>
 
-<a href="produtos.html">
-  <i class="fa-solid fa-box"></i>
-  Produtos
-</a>
+        <a href="produtos-TheGodfather.html">
+          <i class="fa-solid fa-box"></i>
+          Produtos
+        </a>
 
-<a href="clientes.html">
-  <i class="fa-solid fa-users"></i>
-  Clientes
-</a>
+        <a href="clientes-TheGodfather.html">
+          <i class="fa-solid fa-users"></i>
+          Clientes
+        </a>
 
-<a
-  href="pedidos.html"
-  class="active"
->
-  <i class="fa-solid fa-cart-shopping"></i>
-  Pedidos
-</a>
+        <a href="pedidos.html" class="active">
+          <i class="fa-solid fa-cart-shopping"></i>
+          Pedidos
+        </a>
 
-    <a
-            href="despesas.html"
-            class="active">
+        <a href="despesas.html" class="active">
 
-                <i class="fa-solid fa-money-bill-wave"></i>
+          <i class="fa-solid fa-money-bill-wave"></i>
 
-                Despesas
+          Despesas
 
-            </a>
+        </a>
 
-               <a
-                    href="historico.html"
-                    class="active">
+        <a href="historico.html" class="active">
 
-                    <i class="fa-solid fa-clock-rotate-left"></i>
+          <i class="fa-solid fa-clock-rotate-left"></i>
 
-                    Histórico
+          Histórico
 
-                </a>
+        </a>
 
-    <!-- copiar da tela produtos -->
-   
-</nav>
+        <!-- copiar da tela produtos -->
 
-</aside>
+      </nav>
 
-  <main class="content">
+    </aside>
 
-    <header class="topbar">
+    <main class="content">
 
-      <div>
+      <header class="topbar">
 
-        <h1>Pedidos</h1>
+        <div>
 
-        <p>
-          Controle de vendas e produção
-        </p>
+          <h1>Pedidos</h1>
 
-      </div>
+          <p>
+            Controle de vendas e produção
+          </p>
+
+        </div>
 
 
-</header>
+      </header>
 
-    <section class="pedido-form">
+      <section class="pedido-form">
 
-  <h2>Novo Pedido</h2>
+        <h2>Novo Pedido</h2>
 
-  <div class="pedido-grid">
+        <div class="pedido-grid">
 
-    <input
-      type="text"
-      id="cliente"
-      placeholder="Nome do cliente"
-    >
+          <input type="text" id="cliente" placeholder="Nome do cliente">
 
-    <select id="produtoPedido">
+          <select id="produtoPedido">
 
-      <option value="">
-        Selecione um produto
-      </option>
+            <option value="">
+              Selecione um produto
+            </option>
 
-    </select>
+          </select>
 
-    <input
-      type="number"
-      id="quantidadePedido"
-      placeholder="Quantidade"
-      min="1"
-    >
+          <input type="number" id="quantidadePedido" placeholder="Quantidade" min="1">
 
-    <select id="pagamento">
+          <select id="pagamento">
 
-      <option>Pix</option>
+            <option>Pix</option>
 
-      <option>Dinheiro</option>
+            <option>Dinheiro</option>
 
-      <option>Cartão</option>
-     
-    </select>
-    
-    <input type="number"
-    id="valorPago"
-    placeholder="Valor Pago"
-    min="0"
-    >
+            <option>Cartão</option>
 
-    <input type="date"
-    id="dataEntrega"
-    >
+          </select>
 
-     
-  <section class="cards-pedidos">
+          <input type="number" id="valorPago" placeholder="Valor Pago" min="0">
 
-    <div class= "card-mini">
-      <h3 id="totalPedidos">0</h3>
-      <p>Pedidos</p>
-    </div>
-
-    <div class= "card-mini">
-      <h3 id="faturamento">R$ 0,00</h3>
-      <p>faturamento</p>
-    </div>
-
-    <div class= "card-mini">
-      <h3 id="itensVendidos">0</h3>
-      <p>Itens Vendidos</p>
-    
-    </div>
-
-  </section>
-    
-    <button onclick="registrarPedido()">
-          Registrar Pedido
-        </button>
+          <input type="date" id="dataEntrega">
 
 
-    </div>
-    
-</section>
+          <section class="cards-pedidos">
 
-   <section class="tabela-container">
+            <div class="card-mini">
+              <h3 id="totalPedidos">0</h3>
+              <p>Pedidos</p>
+            </div>
 
-  <table>
+            <div class="card-mini">
+              <h3 id="faturamento">R$ 0,00</h3>
+              <p>faturamento</p>
+            </div>
 
-    <thead>
+            <div class="card-mini">
+              <h3 id="itensVendidos">0</h3>
+              <p>Itens Vendidos</p>
 
-      <tr>
+            </div>
 
-        <th>Cliente</th>
-        <th>Produto</th>
-        <th>Quantidade</th>
-        <th>Pagamento</th>
-        <th>Total</th>
-        <th>Valor Pago</th>
-        <th>Status</th>
-        <th>Data</th>
-        <th>Ações</th>
+          </section>
 
-      </tr>
+          <button onclick="registrarPedido()">
+            Registrar Pedido
+          </button>
 
-    </thead>
 
-    <tbody id="tabelaPedidos">
+        </div>
 
-    </tbody>
+      </section>
 
-  </table>
+      <section class="tabela-container">
 
-</section>
+        <table>
 
-  </main>
+          <thead>
+
+            <tr>
+
+              <th>Cliente</th>
+              <th>Produto</th>
+              <th>Quantidade</th>
+              <th>Pagamento</th>
+              <th>Total</th>
+              <th>Valor Pago</th>
+              <th>Status</th>
+              <th>Data</th>
+              <th>Ações</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody id="tabelaPedidos">
+
+          </tbody>
+
+        </table>
+
+      </section>
+
+    </main>
 
   </div>
 
 
-      <script src="assets/js/database.js"></script>
-      <script src="assets/js/pedidos.js"></script>
+  <script src="assets/js/database.js"></script>
+  <script src="assets/js/pedidos.js"></script>
 
-    
+
 </body>
+
 </html>

@@ -768,19 +768,48 @@ select option{
 }
 /* GRÁFICO */
 
-.grafico-box{
+/* =========================
+   GRÁFICO DE PRODUTOS
+========================= */
 
-  background:
-  rgba(255,255,255,0.05);
+.grafico-box {
+    position: relative;
+    width: 100%;
+    height: 380px;
 
-  padding:25px;
+    background: rgba(5, 8, 16, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 20px;
 
-  border-radius:24px;
+    padding: 25px;
+    margin-bottom: 30px;
 
-  margin-bottom:30px;
+    overflow: hidden;
 
-  backdrop-filter:blur(10px);
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.45),
+        inset 0 0 30px rgba(255, 255, 255, 0.015);
 }
+
+.grafico-box canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+    .grafico-box {
+        height: 320px;
+        padding: 15px;
+        border-radius: 16px;
+    }
+}
+
+
+
+
 
 /* TABELA */
 
@@ -1633,4 +1662,463 @@ th,td{
 .btn.excluir{
     background:#e74c3c;
     color:#fff;
+}
+
+/* =====================================================
+   AJUSTE DA TELA DE PEDIDOS
+   Não altera o HTML nem o JavaScript
+   ===================================================== */
+
+/* ÁREA PRINCIPAL DOS PEDIDOS */
+.pedido-form {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 25px;
+    padding: 28px;
+
+    background: linear-gradient(
+        145deg,
+        rgba(10, 15, 30, 0.94),
+        rgba(5, 8, 18, 0.97)
+    );
+
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 22px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.35),
+        inset 0 0 30px rgba(255,255,255,0.015);
+
+    backdrop-filter: blur(12px);
+}
+
+/* TÍTULO NOVO PEDIDO */
+.pedido-form h2 {
+    margin-bottom: 22px;
+    color: #f1f1f1;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+/* =====================================================
+   CAMPOS DO PEDIDO
+   ===================================================== */
+
+.pedido-grid {
+    display: grid;
+
+    grid-template-columns:
+        1.5fr
+        2fr
+        1fr
+        1.2fr
+        1.2fr
+        1.2fr;
+
+    gap: 14px;
+
+    align-items: center;
+}
+
+/* CAMPOS */
+.pedido-grid input,
+.pedido-grid select {
+    width: 100%;
+    height: 52px;
+
+    padding: 0 15px;
+
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 12px;
+
+    background: #171a29;
+    color: #ffffff;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.25s;
+}
+
+/* PLACEHOLDER */
+.pedido-grid input::placeholder {
+    color: #8e93a3;
+}
+
+/* FOCO */
+.pedido-grid input:focus,
+.pedido-grid select:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 2px rgba(37,99,235,0.15);
+}
+
+/* OPÇÕES DOS SELECTS */
+.pedido-grid select option {
+    background: #111522;
+    color: white;
+}
+
+
+/* =====================================================
+   CARDS DE RESUMO
+   ===================================================== */
+
+.cards-pedidos {
+    grid-column: 1 / -1;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-top: 8px;
+    margin-bottom: 4px;
+}
+
+.card-mini {
+    min-height: 105px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #171a29,
+            #111421
+        );
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    border-radius: 16px;
+
+    text-align: center;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.25);
+
+    transition: 0.25s;
+}
+
+/* HOVER DOS CARDS */
+.card-mini:hover {
+    transform: translateY(-3px);
+
+    border-color:
+        rgba(255,255,255,0.18);
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.35);
+}
+
+/* NÚMERO */
+.card-mini h3 {
+    margin: 0 0 6px;
+
+    font-size: 25px;
+    font-weight: 700;
+
+    color: #ffffff;
+}
+
+/* TEXTO */
+.card-mini p {
+    margin: 0;
+
+    color: #9ca3af;
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   BOTÃO REGISTRAR PEDIDO
+   ===================================================== */
+
+.pedido-grid > button {
+    grid-column: 1 / -1;
+
+    width: 220px;
+    height: 50px;
+
+    margin-top: 5px;
+
+    justify-self: start;
+
+    border: none;
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #1d4ed8
+        );
+
+    color: white;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(37,99,235,0.20);
+
+    transition: 0.25s;
+}
+
+/* HOVER */
+.pedido-grid > button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(37,99,235,0.30);
+}
+
+/* CLICK */
+.pedido-grid > button:active {
+    transform: translateY(0);
+}
+
+
+/* =====================================================
+   TABELA DE PEDIDOS
+   ===================================================== */
+
+.pedido-form + .tabela-container {
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 20px;
+
+    background:
+        rgba(10,15,30,0.88);
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,0.30);
+
+    overflow-x: auto;
+}
+
+/* TABELA */
+.pedido-form + .tabela-container table {
+    min-width: 950px;
+
+    width: 100%;
+
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+/* CABEÇALHO */
+.pedido-form + .tabela-container th {
+    padding: 14px 12px;
+
+    background: #171a29;
+
+    color: #dbe2f0;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.4px;
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.10);
+}
+
+/* CÉLULAS */
+.pedido-form + .tabela-container td {
+    padding: 14px 12px;
+
+    color: #d1d5db;
+
+    font-size: 13px;
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.06);
+}
+
+/* LINHA */
+.pedido-form + .tabela-container tbody tr {
+    transition: 0.2s;
+}
+
+/* HOVER */
+.pedido-form + .tabela-container tbody tr:hover {
+    background:
+        rgba(255,255,255,0.035);
+}
+
+
+/* =====================================================
+   LOGO CENTRAL DA TELA DE PEDIDOS
+   ===================================================== */
+
+/* Só reduz a logo quando existir a tela de pedidos */
+body:has(.pedido-form) .logo-central img {
+    width: 360px;
+
+    opacity: 0.08;
+
+    transform: scale(1);
+
+    filter:
+        grayscale(100%)
+        brightness(1.1)
+        contrast(1.2);
+}
+
+body:has(.pedido-form) .logo-central {
+    left: 58%;
+}
+
+
+/* =====================================================
+   RESPONSIVO
+   ===================================================== */
+
+@media (max-width: 1100px) {
+
+    .pedido-grid {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+    .cards-pedidos {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    .pedido-form {
+        padding: 20px;
+    }
+
+    .pedido-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cards-pedidos {
+        grid-template-columns: 1fr;
+    }
+
+    .pedido-grid > button {
+        width: 100%;
+    }
+
+    body:has(.pedido-form) .logo-central img {
+        width: 220px;
+    }
+
+}
+/* =====================================================
+   MENU RESPONSIVO - VERTICAL E HORIZONTAL
+   ===================================================== */
+
+/* DESKTOP */
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* CELULAR */
+@media (max-width: 768px) {
+
+    .sidebar {
+        width: 100%;
+        max-width: 100%;
+        padding: 10px;
+        overflow: hidden;
+    }
+
+    .menu {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: center;
+
+        gap: 8px;
+
+        width: 100%;
+        max-width: 100%;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        padding: 8px 4px;
+
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .menu::-webkit-scrollbar {
+        display: none;
+    }
+
+    .menu a {
+        flex: 0 0 auto;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 7px;
+
+        padding: 10px 14px;
+
+        white-space: nowrap;
+
+        border-radius: 10px;
+
+        font-size: 13px;
+    }
+}
+
+
+/* CELULAR DEITADO / HORIZONTAL */
+@media (max-width: 900px) and (orientation: landscape) {
+
+    .sidebar {
+        width: 100%;
+        padding: 8px 15px;
+    }
+
+    .menu {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        overflow-x: auto;
+
+        gap: 8px;
+    }
+
+    .menu a {
+        flex: 0 0 auto;
+        padding: 8px 12px;
+        font-size: 12px;
+    }
 }
